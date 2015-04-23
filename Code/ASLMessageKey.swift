@@ -1,5 +1,5 @@
 //
-//  ASLMessageAttribute.swift
+//  ASLMessageKey.swift
 //  Cleanroom Project
 //
 //  Created by Evan Maloney on 3/17/15.
@@ -8,7 +8,10 @@
 
 import CleanroomBase
 
-public enum ASLMessageAttribute: String
+/**
+
+*/
+public enum ASLMessageKey: String
 {
     case Time                   = "Time"                    // ASL_KEY_TIME
     case TimeNanoSec            = "TimeNanoSec"             // ASL_KEY_TIME_NSEC

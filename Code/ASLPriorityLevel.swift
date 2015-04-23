@@ -9,9 +9,9 @@
 import CleanroomBase
 
 /**
-Defines the various ASL log priority levels.
+Represents the various ASL log priority levels.
 */
-public enum ASLPriorityLevel: Int
+public enum ASLPriorityLevel: Int32, EnumerableEnum
 {
     case Emergency  = 0     // ASL_LEVEL_EMERG
     case Alert      = 1     // ASL_LEVEL_ALERT
@@ -22,7 +22,7 @@ public enum ASLPriorityLevel: Int
     case Info       = 6     // ASL_LEVEL_INFO
     case Debug      = 7     // ASL_LEVEL_DEBUG
 
-    var priorityString: String {
+    public var priorityString: String {
         get {
             switch self {
             case Emergency: return "Emergency"  // ASL_STRING_EMERG
@@ -35,5 +35,28 @@ public enum ASLPriorityLevel: Int
             case Debug:     return "Debug"      // ASL_STRING_DEBUG
             }
         }
+    }
+
+    public static func allValues()
+        -> [ASLPriorityLevel]
+    {
+        return [
+            ASLPriorityLevel.Emergency,
+            ASLPriorityLevel.Alert,
+            ASLPriorityLevel.Critical,
+            ASLPriorityLevel.Error,
+            ASLPriorityLevel.Warning,
+            ASLPriorityLevel.Notice,
+            ASLPriorityLevel.Info,
+            ASLPriorityLevel.Debug
+        ]
+    }
+
+    var filterMask: Int32 {
+        return 1 << self.rawValue
+    }
+
+    var filterMaskUpTo: Int32 {
+        return (1 << (self.rawValue + 1)) - 1
     }
 }

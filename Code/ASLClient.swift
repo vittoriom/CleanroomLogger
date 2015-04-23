@@ -9,28 +9,13 @@
 import CleanroomBase
 
 /**
-The signature of the `ASLClient`'s search query callback function.
+`ASLClient` instances maintain a client connection to the ASL daemon, and can
+used to perform logging and to perform log search queries.
 
-When a client's `search` function is called, the callback function is provided
-as a parameter. The callback is also provided the client instance executing the
-query, as well as the query instance itself.
-
-For each query result, the callback is executed once, receiving
-the `ASLLogEntry` associated with the result. When there are no more results
-to deliver, the callback is executed one final time with a `nil` value
-passed as the result.
-
-Each time the callback is executed, it should return `true` unless it wants
-to stop receiving further callbacks.
-
-Once the callback returns `false`, it will not be called again.
-*/
-public typealias ASLQueryCallback = (client: ASLClient, query: ASLQueryObject, result: ASLLogEntry?) -> Bool
-
-/**
-`ASLClient` instances maintain a connection to the ASL daemon. Because the
-underlying client connection is not intended to be shared across threads,
-you should only ever use a given `ASLClient` instance from a single thread.
+**Note:** Because the underlying client connection is not intended to be shared
+across threads, each `ASLClient` has an associated GCD serial queue used to
+ensure that the underlying ASL client connection is only ever used from a single
+thread.
 */
 public class ASLClient
 {
@@ -41,13 +26,12 @@ public class ASLClient
     */
     public struct Options: RawOptionSetType, BooleanType
     {
-        /// Returns the raw `UInt32` value representing the receiver's bit
-        /// flags.
-        public var rawValue: UInt32 { return self.value }
+        /** The raw `UInt32` value representing the receiver's bit flags. */
+        public var rawValue: UInt32 { return value }
 
-        /// `true` if the receiver has at least one bit flag set; `false` if
-        /// none are set.
-        public var boolValue: Bool { return self.value != 0 }
+        /** Indicates whether the receiver has at least one bit flag set;
+        `true` if it does; `false` if not. */
+        public var boolValue: Bool { return value != 0 }
 
         private var value: UInt32
 
@@ -58,7 +42,7 @@ public class ASLClient
         :param:     rawValue A `UInt32` value containing the raw bit flag
                     values to use.
         */
-        public init(_ rawValue: UInt32) { self.value = rawValue }
+        public init(_ rawValue: UInt32) { value = rawValue }
 
         /**
         Initializes a new `ASLClient.Options` value with the specified
@@ -67,70 +51,133 @@ public class ASLClient
         :param:     rawValue A `UInt32` value containing the raw bit flag
                     values to use.
         */
-        public init(rawValue: UInt32) { self.value = rawValue }
+        public init(rawValue: UInt32) { value = rawValue }
 
         /**
-        Initializes a new `ASLClient.Options` value with a nil literal,
+        Initializes a new `ASLClient.Options` value with a `nil` literal,
         which would be the equivalent of the `.None` value.
         */
-        public init(nilLiteral: ()) { self.value = 0 }
+        public init(nilLiteral: ()) { value = 0 }
 
-        /// Returns an `ASLClient.Options` value wherein none of the bit
-        /// flags are set.
+        /** An `ASLClient.Options` value wherein none of the bit flags are
+        set. */
         public static var allZeros: Options   { return self(0) }
 
-        /// Returns an `ASLClient.Options` value wherein none of the bit
-        /// flags are set. Equivalent to `allZeros`.
+        /** An `ASLClient.Options` value wherein none of the bit flags are
+        set. Equivalent to `allZeros`. */
         public static var None: Options       { return self(0) }
 
-        /// Returns an `ASLClient.Options` value with the `ASL_OPT_STDERR` flag
-        /// set.
+        /** An `ASLClient.Options` value with the `ASL_OPT_STDERR` flag set. */
         public static var StdErr: Options     { return self(0x00000001) }
 
-        /// Returns an `ASLClient.Options` value with the `ASL_OPT_NO_DELAY`
-        /// flag set.
+        /** An `ASLClient.Options` value with the `ASL_OPT_NO_DELAY` flag 
+        set. */
         public static var NoDelay: Options    { return self(0x00000002) }
 
-        /// Returns an `ASLClient.Options` value with the `ASL_OPT_NO_REMOTE`
-        /// flag set.
+        /** An `ASLClient.Options` value with the `ASL_OPT_NO_REMOTE`
+        flag set. */
         public static var NoRemote: Options   { return self(0x00000004) }
     }
 
+    /** The string that will be used by ASL the *sender* of any log messages
+    passed to the receiver's `log()` function. */
     public let sender: String?
+
+    /** The string that will be used by ASL the *facility* of any log messages
+    passed to the receiver's `log()` function. */
     public let facility: String?
+
+    public let filterMask: Int32
+
+    /** If `true`, the receiver is mirroring log entries in raw form to 
+    the standard error stream; `false` otherwise. */
+    public let useRawStdErr: Bool
+
+    /** The `ASLClient.Options` value that determines the behavior of ASL. */
     public let options: Options
+
+    /** The GCD queue used to serialize log operations. This is exposed to
+    allow low-level ASL operations not supported by `ASLClient` to be 
+    performed using the underlying `aslclient`. This queue must be used for all
+    ASL operations using the receiver's `client` property. */
     public let queue: dispatch_queue_t
+
+    /** Determines whether the receiver's connection to the ASL  */
+    public var isOpen: Bool { return client != nil }
 
     private var client: aslclient?
 
-    public var isOpen: Bool { return client != nil }
+    /**
+    Initializes a new `ASLClient` instance.
+    
+    :param:     sender Will be used as the `ASLMessageKey` value for the
+                `.Sender` key for all log messages sent to ASL. If `nil`, ASL
+                will use the process name.
+    
+    :param:     facility Will be used as the `ASLMessageKey` value for the
+                `.Facility` key for all log messages sent to ASL. If `nil`, ASL
+                will select a default.
+    
+    :param:     filterMask Specifies the priority filter that should be applied
+                to messages sent to the log.
+    
+    :param:     useRawStdErr If `true`, messages sent through the `ASLClient`
+                will be mirrored to standard error without modification.
+                Note that this differs from the behavior of the `.StdErr`
+                value for the `ASLClient.Options` parameter, which performs
+                some escaping and may add additional text to the message.
 
-    public init(sender: String? = nil, facility: String? = nil, options: Options = .StdErr)
+    :param:     options An `ASLClient.Options` value specifying the client
+                options to be used by this new client. Note that if the
+                `.StdErr` value is passed and `rawStdErr` is also `true`,
+                the behavior of `rawStdErr` will be used, overriding the
+                `.StdErr` behavior.
+    */
+    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.Debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
     {
         self.sender = sender
         self.facility = facility
+        self.filterMask = filterMask
+        self.useRawStdErr = useRawStdErr
         self.options = options
         self.queue = dispatch_queue_create("ASLClient.\(sender)", DISPATCH_QUEUE_SERIAL)
     }
 
     deinit {
         if let c = client {
-            asl_close(c)
+            dispatch_sync(queue) {
+                asl_close(c)
+            }
         }
     }
 
     public func open()
     {
         if client == nil {
-            client = asl_open(sender ?? nil, facility ?? nil, options.rawValue)
+            dispatch_sync(queue) {
+                var options = self.options.rawValue
+                if self.useRawStdErr {
+                    options &= ~Options.StdErr.rawValue
+                }
+
+                self.client = asl_open(self.sender ?? nil, self.facility ?? nil, options)
+
+                asl_set_filter(self.client!, self.filterMask)
+
+                if self.useRawStdErr {
+                    asl_add_output_file(self.client!, 2, ASL_MSG_FMT_MSG, ASL_TIME_FMT_LCL, self.filterMask, ASL_ENCODE_NONE)
+                }
+            }
         }
     }
 
     public func close()
     {
         if let c = client {
-            asl_close(c)
-            client = nil
+            dispatch_sync(queue) {
+                asl_close(c)
+                self.client = nil
+            }
         }
     }
 
@@ -156,7 +203,7 @@ public class ASLClient
     {
         let dispatch = dispatcher(synchronously: logSynchronously)
         dispatch {
-            asl_send(client!, message.aslObject)
+            asl_send(self.acquireClient(), message.aslObject)
         }
     }
 
@@ -173,7 +220,7 @@ public class ASLClient
                 Make no assumptions about which thread will be calling the
                 function.
     */
-    public func search(query: ASLQueryObject, callback: ASLQueryCallback)
+    public func search(query: ASLQueryObject, callback: ASLQueryObject.ResultCallback)
     {
         let dispatch = dispatcher()
         dispatch {
@@ -183,6 +230,9 @@ public class ASLClient
             var record = asl_next(results)
             while record != nil && keepGoing {
                 if let message = record[.Message] {
+
+                    println(record[.Sender])
+
                     if let timestampStr = record[.Time] {
                         if let timestampInt = timestampStr.toInt() {
                             var timestamp = NSTimeInterval(timestampInt)
@@ -194,17 +244,18 @@ public class ASLClient
                                 }
                             }
 
-                            let logEntryTime = NSDate(timeIntervalSinceReferenceDate: timestamp)
+                            let logEntryTime = NSDate(timeIntervalSince1970: timestamp)
 
                             var priority = ASLPriorityLevel.Notice
                             if let logLevelStr = record[.Level],
                                 let logLevelInt = logLevelStr.toInt(),
-                                let level = ASLPriorityLevel(rawValue: logLevelInt)
+                                let level = ASLPriorityLevel(rawValue: Int32(logLevelInt))
                             {
                                 priority = level
                             }
 
-                            keepGoing = callback(client: self, query: query, result: ASLLogEntry(priority: priority, message: message, timestamp: logEntryTime))
+                            let record = ASLQueryObject.ResultRecord(client: self, query: query, priority: priority, message: message, timestamp: logEntryTime)
+                            keepGoing = callback(record)
                         }
                     }
                 }
@@ -212,7 +263,7 @@ public class ASLClient
             }
 
             if keepGoing {
-                callback(client: self, query: query, result: nil)
+                callback(nil)
             }
 
             asl_release(results)
