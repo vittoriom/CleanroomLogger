@@ -1,0 +1,9 @@
+ASLPriorityLevel.swift
+	public var priorityString: String
+	public static func allValues()
+        -> [ASLPriorityLevel]
+ASLClient.swift
+	public let filterMask: Int32
+	public func open()
+	public func close()
+	public func log(message: ASLMessageObject, logSynchronously: Bool = false)
