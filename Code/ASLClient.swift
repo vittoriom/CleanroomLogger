@@ -10,7 +10,7 @@ import CleanroomBase
 
 /**
 `ASLClient` instances maintain a client connection to the ASL daemon, and can
-used to perform logging and to perform log search queries.
+used to perform logging and to execute log search queries.
 
 **Note:** Because the underlying client connection is not intended to be shared
 across threads, each `ASLClient` has an associated GCD serial queue used to
