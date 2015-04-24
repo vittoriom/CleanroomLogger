@@ -36,14 +36,6 @@ CleanroomASL requires a **mimimum Xcode version of 6.3** to be built, and the re
 
 **CleanroomASL is designed specificially to be used from Swift code.** Although you *may* be able to use some (or all) of it from Objective-C, we do not specifically support it and can’t provide any help or advice for doing so.
 
-## Building
-
-The `CleanroomASL.xcodeproj` project contains two targets: `CleanroomASL` and `CleanroomASLTests`.
-
-`CleanroomASL` builds an iOS 8 framework.
-
-`CleanroomASLTests` contains unit tests for the code in the framework.
-
 ## Integration
 
 Adding third-party frameworks to your application can make development more complicated:
@@ -56,6 +48,22 @@ Third-party frameworks are a new feature as of iOS 8, and the development and de
 Instead, we recommend embedding `CleanroomASL.xcodeproj` directly in your Xcode project.
 
 This will ensure that CleanroomASL is built with the exact same settings you’re using for your app. You won’t have to fiddle with different settings for different architectures. You’ll also be able to step into CleanroomASL code directly in the debugger, which is very helpful.
+
+### Checking out the repo
+
+The first thing you'll need to do is clone the repository locally. Because this repo contains submodules, you'll need to do a recursive clone:
+
+```
+git clone --recursive https://github.com/emaloney/CleanroomASL.git
+```
+
+### The Xcode Project
+
+The `CleanroomASL.xcodeproj` project contains two targets: `CleanroomASL` and `CleanroomASLTests`.
+
+`CleanroomASL` builds an iOS 8 framework.
+
+`CleanroomASLTests` contains unit tests for the code in the framework.
 
 ### Embedding the needed frameworks
 
