@@ -2,7 +2,7 @@
 
 # CleanroomASL
 
-CleanroomASL is an iOS framework providing a Swift-based API for writing to and reading from the Apple System Log (ASL) facility.
+CleanroomASL is an iOS framework providing a Swift-based API for writing to and reading from [the Apple System Log (ASL) facility](#about-the-apple-system-log).
 
 CleanroomASL is designed as a thin wrapper around ASL’s native C API that makes use of Swift concepts where appropriate to make coding easier-to-understand and less error-prone.
 
