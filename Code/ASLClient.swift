@@ -201,9 +201,6 @@ public class ASLClient
             var record = asl_next(results)
             while record != nil && keepGoing {
                 if let message = record[.Message] {
-
-                    println(record[.Sender])
-
                     if let timestampStr = record[.Time] {
                         if let timestampInt = timestampStr.toInt() {
                             var timestamp = NSTimeInterval(timestampInt)
