@@ -70,7 +70,7 @@ Once this is done, all you should need to do is add the following `import` to an
 import CleanroomASL
 ```
 
-## About ASL
+## About the Apple System Log
 
 ASL may be most familiar to Mac and iOS developers as the subsystem that underlies the [`NSLog()`](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/index.html#//apple_ref/c/func/NSLog) function.
 
