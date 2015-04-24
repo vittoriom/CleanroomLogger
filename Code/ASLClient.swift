@@ -105,7 +105,8 @@ public class ASLClient
     /** Determines whether the receiver's connection to the ASL  */
     public var isOpen: Bool { return client != nil }
 
-    private var client: aslclient?
+    /** The `aslclient` associated with the receiver. */
+    public let client: aslclient
 
     /**
     Initializes a new `ASLClient` instance.
@@ -141,53 +142,23 @@ public class ASLClient
         self.useRawStdErr = useRawStdErr
         self.options = options
         self.queue = dispatch_queue_create("ASLClient.\(sender)", DISPATCH_QUEUE_SERIAL)
+
+        var options = self.options.rawValue
+        if self.useRawStdErr {
+            options &= ~Options.StdErr.rawValue
+        }
+
+        self.client = asl_open(self.sender ?? nil, self.facility ?? nil, options)
+
+        asl_set_filter(self.client, self.filterMask)
+
+        if self.useRawStdErr {
+            asl_add_output_file(self.client, 2, ASL_MSG_FMT_MSG, ASL_TIME_FMT_LCL, self.filterMask, ASL_ENCODE_NONE)
+        }
     }
 
     deinit {
-        if let c = client {
-            dispatch_sync(queue) {
-                asl_close(c)
-            }
-        }
-    }
-
-    public func open()
-    {
-        if client == nil {
-            dispatch_sync(queue) {
-                var options = self.options.rawValue
-                if self.useRawStdErr {
-                    options &= ~Options.StdErr.rawValue
-                }
-
-                self.client = asl_open(self.sender ?? nil, self.facility ?? nil, options)
-
-                asl_set_filter(self.client!, self.filterMask)
-
-                if self.useRawStdErr {
-                    asl_add_output_file(self.client!, 2, ASL_MSG_FMT_MSG, ASL_TIME_FMT_LCL, self.filterMask, ASL_ENCODE_NONE)
-                }
-            }
-        }
-    }
-
-    public func close()
-    {
-        if let c = client {
-            dispatch_sync(queue) {
-                asl_close(c)
-                self.client = nil
-            }
-        }
-    }
-
-    private func acquireClient()
-        -> aslclient
-    {
-        if !isOpen {
-            open()
-        }
-        return client!
+        asl_close(client)
     }
 
     private func dispatcher(synchronously: Bool = false)(block: dispatch_block_t)
@@ -203,7 +174,7 @@ public class ASLClient
     {
         let dispatch = dispatcher(synchronously: logSynchronously)
         dispatch {
-            asl_send(self.acquireClient(), message.aslObject)
+            asl_send(client, message.aslObject)
         }
     }
 
@@ -224,7 +195,7 @@ public class ASLClient
     {
         let dispatch = dispatcher()
         dispatch {
-            let results = asl_search(self.acquireClient(), query.aslObject)
+            let results = asl_search(self.client, query.aslObject)
 
             var keepGoing = true
             var record = asl_next(results)

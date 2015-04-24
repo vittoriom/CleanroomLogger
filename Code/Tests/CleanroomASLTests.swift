@@ -18,7 +18,6 @@ class CleanroomASLTests: XCTestCase
 
         let sender = "com.gilt.cleanroom.tests.ASL"
         let client = ASLClient(sender: sender)
-        client.open()
 
         func testMessageAtPriorityLevel(priorityLevel: ASLPriorityLevel)
             -> String
@@ -70,7 +69,5 @@ class CleanroomASLTests: XCTestCase
             signal.wait()
         }
         signal.unlock()
-
-        client.close()
     }
 }
