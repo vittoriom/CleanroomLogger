@@ -12,7 +12,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (92% documented)</p>
+        <p><a href="index.html"> Docs</a> (94% documented)</p>
         <p class="header-right"><a href=""><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -76,14 +76,92 @@
         <section>
           <section class="section">
             
-            <a href='#cleanroomasl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='cleanroomasl'>CleanroomASL</h1>
+            <p><img src="https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/gilt-tech-logo.png" alt="Gilt Tech logo"></p>
+<a href='#cleanroomasl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='cleanroomasl'>CleanroomASL</h1>
 
-<p>A Swift-based API for reading from &amp; writing to the Apple System Log (more commonly known as <q>the console</q>)</p>
+<p>CleanroomASL is an iOS framework providing a Swift-based API for writing to and reading from the Apple System Log (ASL) facility.</p>
+
+<p>CleanroomASL is designed as a thin wrapper around ASL’s native C API that makes use of Swift concepts where appropriate to make coding easier-to-understand and less error-prone.</p>
+
+<p>CleanroomASL is part of <a href="http://github.com/gilt/Cleanroom">the Cleanroom Project</a> from <a href="http://tech.gilt.com">Gilt Tech</a>.</p>
+<a href='#who_it_s_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='who_it_s_for'>Who It’s For</h3>
+
+<p>If you need to read from your application’s log on the device, CleanroomASL is for you. CleanroomASL is also useful if you need low-level access to writing to the Apple System Log.</p>
+<a href='#who_it_s_not_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='who_it_s_not_for'>Who It’s Not For</h3>
+
+<p>Because CleanroomASL is a low-level API, it may be cumbersome to use for common logging tasks.</p>
+
+<p>If you’d like to use a simple, high-level Swift API for logging within your iOS application, consider using <a href="">the CleanroomLogger project</a>.</p>
+
+<p>CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API that will be more familiar to developers who’ve used other logging systems such as CocoaLumberjack or log4j.</p>
+
+<p>CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.</p>
+<a href='#pre_release_software' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='pre_release_software'>Pre-Release Software</h3>
+
+<p>CleanroomASL is in active development, and as such, it needs additional unit tests, more documentation, and probably a bit of debugging.</p>
+
+<p>If you’d like to contribute to this or any other Cleanroom Project repo, please read the <a href="https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project">contribution guidelines</a>.</p>
+
+<p>CleanroomASL is pre-release software. It is provided for your use, free-of-charge and on an as-is basis. We make no guarantees, promises or apologies. <em>Caveat developer.</em></p>
+<a href='#about_asl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='about_asl'>About ASL</h2>
+
+<p>ASL may be most familiar to Mac and iOS developers as the subsystem that underlies the <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/index.html#//apple_ref/c/func/NSLog"><code>NSLog()</code></a> function.</p>
+
+<p>When running within Xcode, <code>NSLog()</code> output shows up in the Console view.</p>
+
+<p>On the Mac, messages written to ASL are available in the Console application.</p>
+
+<p>For these reasons, people sometimes think of ASL as “the console,” even though that’s a bit of a misnomer:</p>
+
+<ul>
+<li><p>Xcode’s Console view shows the  <code>stdout</code> and <code>stderr</code> streams of the running process. Because <code>NSLog()</code> uses ASL configured in such a way that log messages are echoed to <code>stderr</code>, those messages show up in Xcode’s Console view. But the Console view can also show messages that <em>weren’t</em> sent through ASL.</p></li>
+<li><p>The Console application on the Mac can be thought of as a <em>viewer</em> for ASL log messages, but it only shows a subset of the information that can be sent along with an ASL message. Further, Console is not limited to ASL; it can also be used to follow the content of standard text log files.</p></li>
+</ul>
+<a href='#learning_more_about_asl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='learning_more_about_asl'>Learning more about ASL</h3>
+
+<p>Apple’s native API for ASL is written in C. The definitive documentation for ASL can be found in the manpage that can be accessed using the <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html"><code>man 3 asl</code></a> Terminal command.</p>
+
+<p>Peter Hosey’s <em>Idle Time</em> blog also has <a href="http://boredzo.org/blog/archives/category/programming/apple-system-logger">a number of informative posts on ASL</a> helpful to anyone who wants to understand how it works.</p>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='requirements'>Requirements</h3>
+
+<p>CleanroomASL requires a <strong>mimimum Xcode version of 6.3</strong> to be built, and the resulting binary can be used on <strong>iOS 8.1 and higher</strong>.</p>
+
+<p><strong>CleanroomASL is designed specificially to be used from Swift code.</strong> Although you <em>may</em> be able to use some (or all) of it from Objective-C, we do not specifically support it and can’t provide any help or advice for doing so.</p>
+<a href='#building' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='building'>Building</h2>
+
+<p>The <code>CleanroomASL.xcodeproj</code> project contains two targets: <code>CleanroomASL</code> and <code>CleanroomASLTests</code>.</p>
+
+<p><code>CleanroomASL</code> builds an iOS 8 framework.</p>
+
+<p><code>CleanroomASLTests</code> contains unit tests for the code in the framework.</p>
+<a href='#integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='integration'>Integration</h2>
+
+<p>Adding third-party frameworks to your application can make development more complicated:</p>
+
+<ul>
+<li>Frameworks need to be built for a specific <em>processor architecture</em>; a framework built for an iPhone won’t work in the iOS Simulator and vice-versa</li>
+<li>Architectures can be combined using the command-line tool <code>lipo</code> to create what’s called a <strong>fat binary</strong>. Frameworks that contain fat binaries <em>will</em> work on the iPhone <em>and</em> in the simulator, but Apple won’t accept App Store submissions that use those fat binary frameworks.</li>
+</ul>
+
+<p>Third-party frameworks are a new feature as of iOS 8, and the development and dependency-management workflow still isn’t very mature. As a result, <strong>we do not recommend building the framework separately and including it in your project</strong>.</p>
+
+<p>Instead, we recommend embedding <code>CleanroomASL.xcodeproj</code> directly in your Xcode project.</p>
+
+<p>This will ensure that CleanroomASL is built with the exact same settings you’re using for your app. You won’t have to fiddle with different settings for different architectures. You’ll also be able to step into CleanroomASL code directly in the debugger, which is very helpful.</p>
+
+<p>Once you’ve embedded <code>CleanroomASL.xcodeproj</code> in your project, ensure that <code>CleanroomASL.framework</code> is listed in your target’s <strong>Embedded Binaries</strong> and <strong>Linked Frameworks and Libraries</strong> settings (if it’s not, you’ll need to add it).</p>
+
+<p>Once this is done, all you should need to do is add the following <code>import</code> to any Swift file where you want to use CleanroomASL:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">CleanroomASL</span>
+</code></pre>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>CleanroomASL is distributed under the <a href="LICENSE">MIT license</a>.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-23)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
