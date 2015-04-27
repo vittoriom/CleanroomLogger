@@ -13,7 +13,7 @@
     <a title="ASLClient Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (92% documented)</p>
+        <p><a href="../index.html"> Docs</a> (94% documented)</p>
         <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -78,7 +78,7 @@
           <section class="section">
             <h1>ASLClient</h1>
             <p><code>ASLClient</code> instances maintain a client connection to the ASL daemon, and can
-used to perform logging and to perform log search queries.</p>
+used to perform logging and to execute log search queries.</p>
 
 <p><strong>Note:</strong> Because the underlying client connection is not intended to be shared
 across threads, each <code>ASLClient</code> has an associated GCD serial queue used to
@@ -309,6 +309,33 @@ ASL operations using the receiver&rsquo;s <code>client</code> property.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:vC12CleanroomASL9ASLClient6clientVSs14COpaquePointer"></a>
+                    <a name="//apple_ref/swift/Property/client" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12CleanroomASL9ASLClient6clientVSs14COpaquePointer">client</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>aslclient</code> associated with the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">client</span><span class="p">:</span> <span class="n">aslclient</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC12CleanroomASL9ASLClientcFMS0_FT6senderGSqSS_8facilityGSqSS_10filterMaskVSs5Int3212useRawStdErrSb7optionsVS0_7Options_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(sender:facility:filterMask:useRawStdErr:options:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC12CleanroomASL9ASLClientcFMS0_FT6senderGSqSS_8facilityGSqSS_10filterMaskVSs5Int3212useRawStdErrSb7optionsVS0_7Options_S0_">init(sender:facility:filterMask:useRawStdErr:options:)</a>
@@ -421,44 +448,6 @@ the behavior of <code>rawStdErr</code> will be used, overriding the
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC12CleanroomASL9ASLClient4openFS0_FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/open()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC12CleanroomASL9ASLClient4openFS0_FT_T_">open()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC12CleanroomASL9ASLClient5closeFS0_FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC12CleanroomASL9ASLClient5closeFS0_FT_T_">close()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:FC12CleanroomASL9ASLClient3logFS0_FTCS_16ASLMessageObject16logSynchronouslySb_T_"></a>
                     <a name="//apple_ref/swift/Method/log(_:logSynchronously:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC12CleanroomASL9ASLClient3logFS0_FTCS_16ASLMessageObject16logSynchronouslySb_T_">log(_:logSynchronously:)</a>
@@ -546,7 +535,7 @@ function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-23)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
