@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B4596771AE16BE60049A743 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B45966B1AE16BE60049A743 /* CleanroomASL.framework */; };
 		3B45968D1AE191D50049A743 /* ASLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4596881AE191D50049A743 /* ASLClient.swift */; };
-		3B45968F1AE191D50049A743 /* ASLMessageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLMessageKey.swift */; };
+		3B45968F1AE191D50049A743 /* ASLAttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */; };
 		3B4596901AE191D50049A743 /* ASLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968B1AE191D50049A743 /* ASLObject.swift */; };
 		3B4596911AE191D50049A743 /* ASLPriorityLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */; };
 		3B45969B1AE191F20049A743 /* CleanroomBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4596981AE191E50049A743 /* CleanroomBase.framework */; };
@@ -45,7 +45,7 @@
 		3B45966B1AE16BE60049A743 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596761AE16BE60049A743 /* CleanroomASLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanroomASLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596881AE191D50049A743 /* ASLClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLClient.swift; path = Code/ASLClient.swift; sourceTree = SOURCE_ROOT; };
-		3B45968A1AE191D50049A743 /* ASLMessageKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLMessageKey.swift; path = Code/ASLMessageKey.swift; sourceTree = SOURCE_ROOT; };
+		3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLAttributeKey.swift; path = Code/ASLAttributeKey.swift; sourceTree = SOURCE_ROOT; };
 		3B45968B1AE191D50049A743 /* ASLObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLObject.swift; path = Code/ASLObject.swift; sourceTree = SOURCE_ROOT; };
 		3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLPriorityLevel.swift; path = Code/ASLPriorityLevel.swift; sourceTree = SOURCE_ROOT; };
 		3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CleanroomBase.xcodeproj; path = Libraries/CleanroomBase/CleanroomBase.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -78,8 +78,6 @@
 		3B4596611AE16BE60049A743 = {
 			isa = PBXGroup;
 			children = (
-				3B5264811AE8094B00631DC5 /* libSystem.dylib */,
-				3B52647F1AE8093500631DC5 /* libsystem_asl.dylib */,
 				3B45966D1AE16BE60049A743 /* Code */,
 				3B4596871AE191480049A743 /* Libraries */,
 				3B45966C1AE16BE60049A743 /* Products */,
@@ -99,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				3B4596881AE191D50049A743 /* ASLClient.swift */,
-				3B45968A1AE191D50049A743 /* ASLMessageKey.swift */,
+				3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */,
 				3B45968B1AE191D50049A743 /* ASLObject.swift */,
 				3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */,
 				3B45967A1AE16BE60049A743 /* Tests */,
@@ -120,6 +118,8 @@
 		3B4596871AE191480049A743 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3B5264811AE8094B00631DC5 /* libSystem.dylib */,
+				3B52647F1AE8093500631DC5 /* libsystem_asl.dylib */,
 				3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */,
 			);
 			name = Libraries;
@@ -267,7 +267,7 @@
 				3B4596901AE191D50049A743 /* ASLObject.swift in Sources */,
 				3B4596911AE191D50049A743 /* ASLPriorityLevel.swift in Sources */,
 				3B45968D1AE191D50049A743 /* ASLClient.swift in Sources */,
-				3B45968F1AE191D50049A743 /* ASLMessageKey.swift in Sources */,
+				3B45968F1AE191D50049A743 /* ASLAttributeKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

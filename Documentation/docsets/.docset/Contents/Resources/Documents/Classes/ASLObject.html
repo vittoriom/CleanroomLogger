@@ -13,7 +13,7 @@
     <a title="ASLObject Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (93% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -48,7 +48,7 @@
           <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums.html#/s:O12CleanroomASL13ASLMessageKey">ASLMessageKey</a>
+                <a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ASLPriorityLevel.html">ASLPriorityLevel</a>
@@ -70,7 +70,7 @@
                 <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_13ASLMessageKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -127,60 +127,6 @@ property.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:sC12CleanroomASL9ASLObject9subscriptFOS_13ASLMessageKeyGSqSS_"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:sC12CleanroomASL9ASLObject9subscriptFOS_13ASLMessageKeyGSqSS_">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Allows ASL message attributes to be retrieved and set via the subscripting
-notation.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLMessageKey</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>key</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The message key.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>For the getter, the value associated with <code>key</code>, or <code>nil</code> if
-there isn&rsquo;t one.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:sC12CleanroomASL9ASLObject9subscriptFVSs6UInt32GSqSS_"></a>
                     <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:sC12CleanroomASL9ASLObject9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
@@ -191,8 +137,8 @@ there isn&rsquo;t one.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Allows the keys of the attributes contained in an ASL message to retrieved 
-using the attribute&rsquo;s index.</p>
+                        <p>Allows the keys of ASL object attributes to retrieved using the attribute&rsquo;s
+index.</p>
 
                       </div>
                       <div class="declaration">
@@ -227,6 +173,59 @@ using the attribute&rsquo;s index.</p>
                         <h4>Return Value</h4>
                         <p>The key associated with the attribute at <code>index</code>, or <code>nil</code> if
 <code>index</code> is greater than the number of attributes.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows ASL object attributes to be retrieved and set via the subscripting
+notation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The attribute key.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value associated with <code>key</code>, or <code>nil</code> if there isn&rsquo;t one.</p>
 
                       </div>
                     </section>
@@ -301,7 +300,8 @@ API.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Counts the number of ASL object attributes contained by the receiver.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -314,7 +314,7 @@ API.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The number of attributes contained by the receiver.</p>
+                        <p>The number of attributes.</p>
 
                       </div>
                     </section>

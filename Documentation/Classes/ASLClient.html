@@ -13,7 +13,7 @@
     <a title="ASLClient Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (93% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -48,7 +48,7 @@
           <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums.html#/s:O12CleanroomASL13ASLMessageKey">ASLMessageKey</a>
+                <a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ASLPriorityLevel.html">ASLPriorityLevel</a>
@@ -70,7 +70,7 @@
                 <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_13ASLMessageKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -191,8 +191,16 @@ passed to the receiver&rsquo;s <code>log()</code> function.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The receiver&rsquo;s filter mask.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">filterMask</span><span class="p">:</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -372,7 +380,7 @@ ASL operations using the receiver&rsquo;s <code>client</code> property.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Will be used as the <code>ASLMessageKey</code> value for the
+                                  <p>Will be used as the <code>ASLAttributeKey</code> value for the
 <code>.Sender</code> key for all log messages sent to ASL. If <code>nil</code>, ASL
 will use the process name.</p>
 
@@ -387,7 +395,7 @@ will use the process name.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Will be used as the <code>ASLMessageKey</code> value for the
+                                  <p>Will be used as the <code>ASLAttributeKey</code> value for the
 <code>.Facility</code> key for all log messages sent to ASL. If <code>nil</code>, ASL
 will select a default.</p>
 

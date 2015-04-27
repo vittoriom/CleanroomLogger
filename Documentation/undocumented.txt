@@ -1,8 +1,0 @@
-ASLPriorityLevel.swift
-	public var priorityString: String
-	public static func allValues()
-        -> [ASLPriorityLevel]
-	public var filterMask: Int32
-	public var filterMaskUpTo: Int32
-ASLClient.swift
-	public let filterMask: Int32

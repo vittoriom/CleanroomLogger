@@ -9,19 +9,36 @@
 import CleanroomBase
 
 /**
-Represents the various ASL log priority levels.
+The `ASLPriorityLevel` enum represents the documented `ASL_LEVEL_*` constant
+values.
 */
 public enum ASLPriorityLevel: Int32, EnumerableEnum
 {
-    case Emergency  = 0     // ASL_LEVEL_EMERG
-    case Alert      = 1     // ASL_LEVEL_ALERT
-    case Critical   = 2     // ASL_LEVEL_CRIT
-    case Error      = 3     // ASL_LEVEL_ERR
-    case Warning    = 4     // ASL_LEVEL_WARNING
-    case Notice     = 5     // ASL_LEVEL_NOTICE
-    case Info       = 6     // ASL_LEVEL_INFO
-    case Debug      = 7     // ASL_LEVEL_DEBUG
+    /** Represents the `ASL_LEVEL_EMERG` constant. */
+    case Emergency  = 0
 
+    /** Represents the `ASL_LEVEL_ALERT` constant. */
+    case Alert      = 1
+
+    /** Represents the `ASL_LEVEL_CRIT` constant. */
+    case Critical   = 2
+
+    /** Represents the `ASL_LEVEL_ERR` constant. */
+    case Error      = 3
+
+    /** Represents the `ASL_LEVEL_WARNING` constant. */
+    case Warning    = 4
+
+    /** Represents the `ASL_LEVEL_NOTICE` constant. */
+    case Notice     = 5
+
+    /** Represents the `ASL_LEVEL_INFO` constant. */
+    case Info       = 6
+
+    /** Represents the `ASL_LEVEL_DEBUG` constant. */
+    case Debug      = 7
+
+    /** Returns the `ASL_STRING_*` equivalent of the receiver. */
     public var priorityString: String {
         get {
             switch self {
@@ -37,6 +54,22 @@ public enum ASLPriorityLevel: Int32, EnumerableEnum
         }
     }
 
+    /** Returns a filter mask for the receiver. This mask can be used to
+    specify *only* those messages with the same priority as the receiver. */
+    public var filterMask: Int32 {
+        return 1 << self.rawValue
+    }
+
+    /** Returns a filter mask representing all priority levels up to and 
+    including the receiver. This mask can be used to specify *all* messages
+    whose priority is the same as or more severe than the receiver. */
+    public var filterMaskUpTo: Int32 {
+        return (1 << (self.rawValue + 1)) - 1
+    }
+
+    /**
+    Returns all possible values of the `ASLPriorityLevel` enum.
+    */
     public static func allValues()
         -> [ASLPriorityLevel]
     {
@@ -50,13 +83,5 @@ public enum ASLPriorityLevel: Int32, EnumerableEnum
             ASLPriorityLevel.Info,
             ASLPriorityLevel.Debug
         ]
-    }
-
-    public var filterMask: Int32 {
-        return 1 << self.rawValue
-    }
-
-    public var filterMaskUpTo: Int32 {
-        return (1 << (self.rawValue + 1)) - 1
     }
 }

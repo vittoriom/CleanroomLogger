@@ -15,15 +15,14 @@ key values.
 public extension asl_object_t
 {
     /**
-    Allows ASL message attributes to be retrieved and set using the 
-    `ASLMessageKey`.
+    Allows ASL object attributes to be retrieved and set via the subscripting
+    notation.
+
+    :param:     key The attribute key.
     
-    :param:     key The message key.
-    
-    :returns:   For the getter, the value associated with `key`, or `nil` if
-                there isn't one.
+    :returns:   The value associated with `key`, or `nil` if there isn't one.
     */
-    public subscript(key: ASLMessageKey)
+    public subscript(key: ASLAttributeKey)
         -> String?
     {
         get {
@@ -63,7 +62,9 @@ public extension asl_object_t
     }
 
     /**
-    :returns: The number of attributes contained by the receiver.
+    Counts the number of ASL object attributes contained by the receiver.
+    
+    :returns:   The number of attributes.
     */
     public func countAttributes()
         -> UInt32
@@ -154,15 +155,14 @@ public class ASLObject
     }
 
     /**
-    Allows ASL message attributes to be retrieved and set via the subscripting
+    Allows ASL object attributes to be retrieved and set via the subscripting
     notation.
     
-    :param:     key The message key.
+    :param:     key The attribute key.
     
-    :returns:   For the getter, the value associated with `key`, or `nil` if
-                there isn't one.
+    :returns:   The value associated with `key`, or `nil` if there isn't one.
     */
-    public subscript(key: ASLMessageKey)
+    public subscript(key: ASLAttributeKey)
         -> String?
     {
         get { return _aslObject[key] }
@@ -171,8 +171,8 @@ public class ASLObject
     }
 
     /**
-    Allows the keys of the attributes contained in an ASL message to retrieved 
-    using the attribute's index.
+    Allows the keys of ASL object attributes to retrieved using the attribute's
+    index.
 
     :param:     index The (zero-based) attribute index.
     
@@ -186,7 +186,9 @@ public class ASLObject
     }
 
     /**
-    :returns: The number of attributes contained by the receiver.
+    Counts the number of ASL object attributes contained by the receiver.
+    
+    :returns:   The number of attributes.
     */
     public func countAttributes()
         -> UInt32
@@ -412,7 +414,7 @@ public final class ASLQueryObject: ASLObject
     When a search query is executed, the result set will be constrained
     according to the query key(s) that have been set on the receiver.
     
-    :param:     key An `ASLMessageKey` specifying the key whose value will
+    :param:     key An `ASLAttributeKey` specifying the key whose value will
                 be queried.
     
     :param:     value The string value to find.
@@ -423,7 +425,7 @@ public final class ASLQueryObject: ASLObject
     :param:     modifiers The `OperationModifiers` bit flags that modify the
                 behavior of the search operation.
     */
-    public func setQueryKey(key: ASLMessageKey, value: String?, operation: Operation, modifiers: OperationModifiers)
+    public func setQueryKey(key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
     {
         asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, value?.cStringUsingEncoding(NSUTF8StringEncoding)! ?? nil, operation.rawValue | modifiers.rawValue)
     }
@@ -434,7 +436,7 @@ public final class ASLQueryObject: ASLObject
     When a search query is executed, the result set will be constrained
     according to the query key(s) that have been set on the receiver.
     
-    :param:     key An `ASLMessageKey` specifying the key whose value will
+    :param:     key An `ASLAttributeKey` specifying the key whose value will
                 be queried.
     
     :param:     value The integer value to find.
@@ -447,7 +449,7 @@ public final class ASLQueryObject: ASLObject
                 variant automatically causes the `.MatchNumeric` bit flag to
                 be set.
     */
-    public func setQueryKey(key: ASLMessageKey, value: Int, operation: Operation, modifiers: OperationModifiers)
+    public func setQueryKey(key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
     {
         asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, String(value).cStringUsingEncoding(NSUTF8StringEncoding)!, operation.rawValue | modifiers.rawValue | OperationModifiers.MatchNumeric.rawValue)
     }

@@ -87,6 +87,7 @@ public class ASLClient
     passed to the receiver's `log()` function. */
     public let facility: String?
 
+    /** The receiver's filter mask. */
     public let filterMask: Int32
 
     /** If `true`, the receiver is mirroring log entries in raw form to 
@@ -111,11 +112,11 @@ public class ASLClient
     /**
     Initializes a new `ASLClient` instance.
     
-    :param:     sender Will be used as the `ASLMessageKey` value for the
+    :param:     sender Will be used as the `ASLAttributeKey` value for the
                 `.Sender` key for all log messages sent to ASL. If `nil`, ASL
                 will use the process name.
     
-    :param:     facility Will be used as the `ASLMessageKey` value for the
+    :param:     facility Will be used as the `ASLAttributeKey` value for the
                 `.Facility` key for all log messages sent to ASL. If `nil`, ASL
                 will select a default.
     
