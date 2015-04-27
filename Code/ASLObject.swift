@@ -12,23 +12,26 @@ import CleanroomBase
 Extends the `asl_object_t` type by adding type-safe subscripting for message
 key values.
 */
-extension asl_object_t
+public extension asl_object_t
 {
     /**
-    Allows ASL message attributes to be retrieved and set via the subscripting
-    notation.
+    Allows ASL message attributes to be retrieved and set using the 
+    `ASLMessageKey`.
     
     :param:     key The message key.
     
     :returns:   For the getter, the value associated with `key`, or `nil` if
                 there isn't one.
     */
-    subscript(key: ASLMessageKey)
+    public subscript(key: ASLMessageKey)
         -> String?
     {
         get {
             let value = asl_get(self, key.rawValue)
-            return String.fromCString(value)
+            if value != nil {
+                return String.fromCString(value)
+            }
+            return nil
         }
 
         set {
@@ -39,10 +42,38 @@ extension asl_object_t
             }
         }
     }
+
+    /**
+    Allows the keys of the attributes contained in an ASL message to retrieved 
+    using the attribute's index.
+
+    :param:     index The (zero-based) attribute index.
+    
+    :returns:   The key associated with the attribute at `index`, or `nil` if
+                `index` is greater than the number of attributes.
+    */
+    public subscript(index: UInt32)
+        -> String?
+    {
+        let value = asl_key(self, index)
+        if value != nil {
+            return String.fromCString(value)
+        }
+        return nil
+    }
+
+    /**
+    :returns: The number of attributes contained by the receiver.
+    */
+    public func countAttributes()
+        -> UInt32
+    {
+        return UInt32(asl_count(self))
+    }
 }
 
 /**
-Instances of the `ASLObject` class provide type-safe to an underlying 
+Instances of the `ASLObject` class provide type-safe to an underlying
 `asl_object_t` of a given `ASL_TYPE`.
 
 Typically, you would interact one of the `ASLObject` subclasses: 
@@ -131,16 +162,36 @@ public class ASLObject
     :returns:   For the getter, the value associated with `key`, or `nil` if
                 there isn't one.
     */
-    subscript(key: ASLMessageKey)
+    public subscript(key: ASLMessageKey)
         -> String?
     {
-        get {
-            return _aslObject[key]
-        }
+        get { return _aslObject[key] }
 
-        set {
-            _aslObject[key] = newValue
-        }
+        set { _aslObject[key] = newValue }
+    }
+
+    /**
+    Allows the keys of the attributes contained in an ASL message to retrieved 
+    using the attribute's index.
+
+    :param:     index The (zero-based) attribute index.
+    
+    :returns:   The key associated with the attribute at `index`, or `nil` if
+                `index` is greater than the number of attributes.
+    */
+    public subscript(index: UInt32)
+        -> String?
+    {
+        return _aslObject[index]
+    }
+
+    /**
+    :returns: The number of attributes contained by the receiver.
+    */
+    public func countAttributes()
+        -> UInt32
+    {
+        return _aslObject.countAttributes()
     }
 }
 

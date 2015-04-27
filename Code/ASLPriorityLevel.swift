@@ -52,11 +52,11 @@ public enum ASLPriorityLevel: Int32, EnumerableEnum
         ]
     }
 
-    var filterMask: Int32 {
+    public var filterMask: Int32 {
         return 1 << self.rawValue
     }
 
-    var filterMaskUpTo: Int32 {
+    public var filterMaskUpTo: Int32 {
         return (1 << (self.rawValue + 1)) - 1
     }
 }

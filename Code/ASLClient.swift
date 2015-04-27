@@ -141,7 +141,7 @@ public class ASLClient
         self.filterMask = filterMask
         self.useRawStdErr = useRawStdErr
         self.options = options
-        self.queue = dispatch_queue_create("ASLClient.\(sender)", DISPATCH_QUEUE_SERIAL)
+        self.queue = dispatch_queue_create("ASLClient", DISPATCH_QUEUE_SERIAL)
 
         var options = self.options.rawValue
         if self.useRawStdErr {
@@ -170,11 +170,28 @@ public class ASLClient
         }
     }
 
+    /**
+    Sends the message to the Apple System Log.
+    
+    :param:     message the `ASLMessageObject` to send to Apple System Log.
+    
+    :param:     logSynchronously If `true`, the `log()` function will perform
+                synchronously. You should **not** set this to `true` in
+                production code; it will degrade performance. Synchronous
+                logging can be useful when debugging to ensure that up-to-date
+                log messages are visible in the console.
+    */
     public func log(message: ASLMessageObject, logSynchronously: Bool = false)
     {
         let dispatch = dispatcher(synchronously: logSynchronously)
         dispatch {
-            asl_send(client, message.aslObject)
+            if message[.ReadUID] == nil {
+                // the .ReadUID attribute determines the processes that can
+                // read this log entry. -1 means anyone can read.
+                message[.ReadUID] = "-1"
+            }
+
+            asl_send(self.client, message.aslObject)
         }
     }
 
