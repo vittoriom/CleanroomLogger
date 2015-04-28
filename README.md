@@ -72,7 +72,13 @@ Once you’ve embedded `CleanroomASL.xcodeproj` in your project, you'll need to 
 - `CleanroomASL.framework` — This is the CleanroomASL binary
 - `CleanroomBase.framework` — This is the binary for [CleanroomBase](https://github.com/emaloney/CleanroomBase), which is a dependency of CleanroomASL. It is included as a submodule within CleanroomASL.
 
-Once this is done, all you should need to do is add the following `import` to any Swift file where you want to use CleanroomASL:
+> **Important:** If multiple developers are working from the same project file, you will want to pay close attention to how Xcode adds the frameworks to the project.
+>
+> Sometimes, files get added using full paths or certain types of relative paths may specific to that development environment. When this happens, other developers using the project may see build errors related to being unable to locate these frameworks.
+>
+> The ideal way to reference each framework path is as "`$(BUILT_PRODUCTS_DIR)/CleanroomASL.framework`" and "`$(BUILT_PRODUCTS_DIR)/CleanroomBase.framework`".
+
+Once the frameworks have been added successfully, all you will need to do is add the following `import` statement to any Swift file where you want to use CleanroomASL:
 
 ```swift
 import CleanroomASL
