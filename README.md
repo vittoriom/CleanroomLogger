@@ -145,7 +145,7 @@ Using its return value, the callback can control whether subsequent records are 
 
 #### Further reading
 
-For further information on using the CleanroomASL framework, [full API documentation](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) is available.
+For further information on using the CleanroomASL framework, [visit the API documentation](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html).
 
 ## About the Apple System Log
 
@@ -160,6 +160,21 @@ For these reasons, people sometimes think of ASL as “the console,” even thou
 - Xcode’s Console view shows the  `stdout` and `stderr` streams of the running process. Because `NSLog()` uses ASL configured in such a way that log messages are echoed to `stderr`, those messages show up in Xcode’s Console view. But the Console view can also show messages that *weren’t* sent through ASL.
 
 - The Console application on the Mac can be thought of as a *viewer* for ASL log messages, but it only shows a subset of the information that can be sent along with an ASL message. Further, Console is not limited to ASL; it can also be used to follow the content of standard text log files.
+
+#### Differences between the device and simulator
+
+On iOS, the Apple System Log behaves differently depending on whether it is running on a device or in the iOS Simulator.
+
+|Behavior|Simulator|Device|
+|---|---------|------|
+|Visibility|By default, log entries are visible to root and to the UID of the process that recorded them|By default, log entries are visible only to root|
+|Searching|Searches can return log entries recorded by any process|Searches will only return log entries recorded by the calling process|
+
+On the device, in order for an ASL log entry to be visible to the process that recorded it, the `.ReadUID` attribute of the `ASLMessageObject` must be explicitly set to `-1`. Otherwise, the log entry will be visible only to root, and if the process is trying to search for its own log entries, they won't be returned.
+
+To avoid this causing confusion, the CleanroomASL framework automatically sets a message's `.ReadUID` attribute to `-1` if no value is explicitly specified.
+
+> If you do in fact want your messages visible only to root, you can ensure that your log entries are recorded as you intend by specifying a `.ReadUID` attribute value of `0`. This will prevent CleanroomASL from automatically setting that attribute value to `-1`.
 
 #### Learning more about ASL
 
