@@ -87,10 +87,10 @@
 <p>CleanroomASL is designed as a thin wrapper around ASL’s native C API that makes use of Swift concepts where appropriate to make coding easier-to-understand and less error-prone.</p>
 
 <p>CleanroomASL is part of <a href="http://github.com/gilt/Cleanroom">the Cleanroom Project</a> from <a href="http://tech.gilt.com">Gilt Tech</a>.</p>
-<a href='#who_it_s_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='who_it_s_for'>Who It’s For</h3>
+<a href='#who_it_s_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='who_it_s_for'>Who It’s For</h4>
 
 <p>If you need to read from your application’s log on the device, CleanroomASL is for you. CleanroomASL is also useful if you need low-level access to writing to the Apple System Log.</p>
-<a href='#who_it_s_not_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='who_it_s_not_for'>Who It’s Not For</h3>
+<a href='#who_it_s_not_for' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='who_it_s_not_for'>Who It’s Not For</h4>
 
 <p>Because CleanroomASL is a low-level API, it may be cumbersome to use for common logging tasks.</p>
 
@@ -99,14 +99,14 @@
 <p>CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API that will be more familiar to developers who’ve used other logging systems such as CocoaLumberjack or log4j.</p>
 
 <p>CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.</p>
-<a href='#pre_release_software' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='pre_release_software'>Pre-Release Software</h3>
+<a href='#pre_release_software' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='pre_release_software'>Pre-Release Software</h4>
 
 <p>CleanroomASL is in active development, and as such, it needs additional unit tests, more documentation, and probably a bit of debugging.</p>
 
 <p>If you’d like to contribute to this or any other Cleanroom Project repo, please read the <a href="https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project">contribution guidelines</a>.</p>
 
 <p>CleanroomASL is pre-release software. It is provided for your use, free-of-charge and on an as-is basis. We make no guarantees, promises or apologies. <em>Caveat developer.</em></p>
-<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='requirements'>Requirements</h3>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='requirements'>Requirements</h4>
 
 <p>CleanroomASL requires a <strong>mimimum Xcode version of 6.3</strong> to be built, and the resulting binary can be used on <strong>iOS 8.1 and higher</strong>.</p>
 
@@ -125,19 +125,19 @@
 <p>Instead, we recommend embedding <code>CleanroomASL.xcodeproj</code> directly in your Xcode project.</p>
 
 <p>This will ensure that CleanroomASL is built with the exact same settings you’re using for your app. You won’t have to fiddle with different settings for different architectures. You’ll also be able to step into CleanroomASL code directly in the debugger, which is very helpful.</p>
-<a href='#checking_out_the_repo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='checking_out_the_repo'>Checking out the repo</h3>
+<a href='#checking_out_the_repo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='checking_out_the_repo'>Checking out the repo</h4>
 
 <p>The first thing you&rsquo;ll need to do is clone the repository locally. Because this repo contains submodules, you&rsquo;ll need to do a recursive clone:</p>
 <pre class="highlight plaintext"><code>git clone --recursive https://github.com/emaloney/CleanroomASL.git
 </code></pre>
-<a href='#the_xcode_project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='the_xcode_project'>The Xcode Project</h3>
+<a href='#the_xcode_project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='the_xcode_project'>The Xcode Project</h4>
 
 <p>The <code>CleanroomASL.xcodeproj</code> project contains two targets: <code>CleanroomASL</code> and <code>CleanroomASLTests</code>.</p>
 
 <p><code>CleanroomASL</code> builds an iOS 8 framework.</p>
 
 <p><code>CleanroomASLTests</code> contains unit tests for the code in the framework.</p>
-<a href='#embedding_the_needed_frameworks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='embedding_the_needed_frameworks'>Embedding the needed frameworks</h3>
+<a href='#embedding_the_needed_frameworks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='embedding_the_needed_frameworks'>Embedding the needed frameworks</h4>
 
 <p>Once you’ve embedded <code>CleanroomASL.xcodeproj</code> in your project, you&rsquo;ll need to ensure that the necessary frameworks are listed in your target’s <strong>Embedded Binaries</strong> and <strong>Linked Frameworks and Libraries</strong> settings:</p>
 
@@ -146,9 +146,73 @@
 <li><code>CleanroomBase.framework</code> — This is the binary for <a href="https://github.com/emaloney/CleanroomBase">CleanroomBase</a>, which is a dependency of CleanroomASL. It is included as a submodule within CleanroomASL.</li>
 </ul>
 
-<p>Once this is done, all you should need to do is add the following <code>import</code> to any Swift file where you want to use CleanroomASL:</p>
+<blockquote>
+<p><strong>Important:</strong> If multiple developers are working from the same project file, you will want to pay close attention to how Xcode adds the frameworks to the project.</p>
+
+<p>Sometimes, files get added using full paths or certain types of relative paths may specific to that development environment. When this happens, other developers using the project may see build errors related to being unable to locate these frameworks.</p>
+
+<p>The ideal way to reference each framework path is as <q>`$(BUILT_PRODUCTS_DIR)/CleanroomASL.framework`</q> and <q>`$(BUILT_PRODUCTS_DIR)/CleanroomBase.framework`</q>.</p>
+</blockquote>
+
+<p>Once the frameworks have been added successfully, all you will need to do is add the following <code>import</code> statement to any Swift file where you want to use CleanroomASL:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">CleanroomASL</span>
 </code></pre>
+<a href='#using_cleanroomasl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using_cleanroomasl'>Using CleanroomASL</h2>
+
+<p>The CleanroomASL framework provides a simple mechanism for writing to the Apple System Log, and it can also be used to query the contents of the Apple System Log in order to find messages matching specific criteria.</p>
+<a href='#the_aslclient_class' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='the_aslclient_class'>The ASLClient class</h4>
+
+<p>The <code>ASLClient</code> class provides a <code>log()</code> function for writing to the Apple System Log, and also provides a <code>search()</code> function for reading.</p>
+
+<p>Each <code>ASLClient</code> instance represents a connection to the ASL daemon. If you&rsquo;re only writing to ASL, a single <code>ASLClient</code> instance per application is sufficient for most uses, but if you find cases where you need to use multiple instances for writing, that will work as well.</p>
+
+<p>Because the underlying ASL connections are not inherently thread-safe, the <code>ASLClient</code> class maintains its own Grand Central Dispatch queue which it uses to serialize use of the connection. This enforces a reliable ordering of log writes when using a single <code>ASLClient</code> and also ensures safe access to the shared client resource.</p>
+
+<blockquote>
+<p><strong>Note:</strong> Because of this design, each <code>ASLClient</code> instance may be used safely from any thread without any additional work on your part.</p>
+</blockquote>
+
+<p>If your application is going to be writing to ASL <em>and</em> querying it, you may want to use a separate <code>ASLClient</code> instance for each individual search session to ensure that multiple concurrent searches do not slow down log writing or each other in the GCD queue.</p>
+
+<p>By default, logging is performed asynchronously, which also provides performance benefits; on device, writing to ASL and mirroring to <code>stderr</code> can be expensive. Using <code>NSLog()</code> indiscriminately from the main thread can cause a noticeable performance degradation for UI operations such as scrolling and refreshing the display. <code>ASLClient</code> avoids this and allows your scrolling to be buttery smooth—and if scrolling isn&rsquo;t buttery smooth, <em>at least you&rsquo;ll know it&rsquo;s not the fault of your logging code!</em></p>
+<a href='#writing_to_the_apple_system_log' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='writing_to_the_apple_system_log'>Writing to the Apple System Log</h4>
+
+<p>To write to the Apple System Log, construct an <code>ASLMessageObject</code> and pass it to the <code>log()</code> function of an <code>ASLClient</code> instance:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">ASLClient</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">message</span> <span class="o">=</span> <span class="kt">ASLMessageObject</span><span class="p">(</span><span class="nv">priorityLevel</span><span class="p">:</span> <span class="o">.</span><span class="kt">Notice</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"This is my message. There are many like it, but this one is mine."</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre>
+
+<p>In the example above, the text <q>`This is my message. There are many like it, but this one is mine.`</q> will be written asynchronously to the Apple System Log at the <code>.Notice</code> priority level.</p>
+<a href='#querying_the_apple_system_log' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='querying_the_apple_system_log'>Querying the Apple System Log</h4>
+
+<p>The <code>ASLQueryObject</code> class is used to perform search queries of the Apple System Log. Using the <code>setQueryKey()</code> function, you can specify search criteria for the messages you want to find:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">ASLQueryObject</span><span class="p">()</span>
+<span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Message</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">KeyExists</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Time</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="n">startTime</span><span class="o">.</span><span class="n">timeIntervalSince1970</span> <span class="o">-</span> <span class="mi">60</span><span class="p">),</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">GreaterThanOrEqualTo</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
+</code></pre>
+
+<p>The code above creates a search query that will find all log entries recorded in the last minute that have a value for the <code>.Message</code> attribute key. To start the search, pass the <code>query</code> object to the client&rsquo;s <code>search()</code> function and provide a callback that will be executed once for each log entry matching the search criteria specified by <code>query</code>:</p>
+<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="p">{</span> <span class="n">record</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">record</span> <span class="o">=</span> <span class="n">record</span> <span class="p">{</span>
+      <span class="c1">// we have a search query result record; process it here
+</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="c1">// there are no more records to process; no further callbacks will be issued
+</span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>   <span class="c1">// returning true to indicate we want more results if available
+</span><span class="p">}</span>
+</code></pre>
+
+<p>The second parameter to the <code>search()</code> function is of type <code>ASLQueryObject.ResultCallback</code>, a closure having the signature <code>(ResultRecord?) -&gt; Bool</code>. The callback is passed a non-<code>nil</code> <code>ASLQueryObject.ResultRecord</code> instance for each record matching the search criteria, and when no more results are available, <code>nil</code> is passed.</p>
+
+<p>Using its return value, the callback can control whether subsequent records are reported by the search operation. As long as the callback is willing to accept further results, it should return <code>true</code>. When the callback no longer wishes to process results, it should return <code>false</code>.</p>
+
+<blockquote>
+<p>Once <code>nil</code> is passed to the callback or the callback returns <code>false</code>, the callback will not be executed again for the given search operation.</p>
+</blockquote>
+<a href='#further_reading' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='further_reading'>Further reading</h4>
+
+<p>For further information on using the CleanroomASL framework, <a href="https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html">visit the API documentation</a>.</p>
 <a href='#about_the_apple_system_log' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='about_the_apple_system_log'>About the Apple System Log</h2>
 
 <p>ASL may be most familiar to Mac and iOS developers as the subsystem that underlies the <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/index.html#//apple_ref/c/func/NSLog"><code>NSLog()</code></a> function.</p>
@@ -163,7 +227,37 @@
 <li><p>Xcode’s Console view shows the  <code>stdout</code> and <code>stderr</code> streams of the running process. Because <code>NSLog()</code> uses ASL configured in such a way that log messages are echoed to <code>stderr</code>, those messages show up in Xcode’s Console view. But the Console view can also show messages that <em>weren’t</em> sent through ASL.</p></li>
 <li><p>The Console application on the Mac can be thought of as a <em>viewer</em> for ASL log messages, but it only shows a subset of the information that can be sent along with an ASL message. Further, Console is not limited to ASL; it can also be used to follow the content of standard text log files.</p></li>
 </ul>
-<a href='#learning_more_about_asl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='learning_more_about_asl'>Learning more about ASL</h3>
+<a href='#differences_between_the_device_and_simulator' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='differences_between_the_device_and_simulator'>Differences between the device and simulator</h4>
+
+<p>On iOS, the Apple System Log behaves differently depending on whether it is running on a device or in the iOS Simulator.</p>
+
+<table><thead>
+<tr>
+<th>Behavior</th>
+<th>Simulator</th>
+<th>Device</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Visibility</td>
+<td>By default, log entries are visible to root and to the UID of the process that recorded them</td>
+<td>By default, log entries are visible only to root</td>
+</tr>
+<tr>
+<td>Searching</td>
+<td>Searches can return log entries recorded by any process</td>
+<td>Searches will only return log entries recorded by the calling process</td>
+</tr>
+</tbody></table>
+
+<p>On the device, in order for an ASL log entry to be visible to the process that recorded it, the <code>.ReadUID</code> attribute of the <code>ASLMessageObject</code> must be explicitly set to <code>-1</code>. Otherwise, the log entry will be visible only to root, and if the process is trying to search for its own log entries, they won&rsquo;t be returned.</p>
+
+<p>To avoid this causing confusion, the CleanroomASL framework automatically sets a message&rsquo;s <code>.ReadUID</code> attribute to <code>-1</code> if no value is explicitly specified.</p>
+
+<blockquote>
+<p>If you do in fact want your messages visible only to root, you can ensure that your log entries are recorded as you intend by specifying a <code>.ReadUID</code> attribute value of <code>0</code>. This will prevent CleanroomASL from automatically setting that attribute value to <code>-1</code>.</p>
+</blockquote>
+<a href='#learning_more_about_asl' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='learning_more_about_asl'>Learning more about ASL</h4>
 
 <p>Apple’s native API for ASL is written in C. The definitive documentation for ASL can be found in the manpage that can be accessed using the <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html"><code>man 3 asl</code></a> Terminal command.</p>
 
@@ -175,7 +269,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-27)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
