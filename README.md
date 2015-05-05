@@ -16,7 +16,7 @@ If you need to read from your application’s log on the device, CleanroomASL is
 
 Because CleanroomASL is a low-level API, it may be cumbersome to use for common logging tasks.
 
-If you’d like to use a simple, high-level Swift API for logging within your iOS application, consider using [the CleanroomLogger project]().
+If you’d like to use a simple, high-level Swift API for logging within your iOS application, consider using [the CleanroomLogger project](https://github.com/emaloney/CleanroomLogger).
 
 CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API that will be more familiar to developers who’ve used other logging systems such as CocoaLumberjack or log4j.
 
