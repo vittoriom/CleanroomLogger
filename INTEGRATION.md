@@ -12,6 +12,10 @@ Note that CleanroomASL is built as a *Swift framework*. This has several implica
 
 CleanroomASL requires a **mimimum Xcode version of 6.3** to be built, and the resulting binary can be used on **iOS 8.1 and higher**.
 
+We'll also be using the `git` command in the Terminal for installing the CleanroomASL repo in your codebase. These steps have been tested with **git 2.3.2 (Apple Git-55)**, although they should be compatible with a wide range of git versions.
+
+Lastly, some familiarity with the Terminal application and the bash command line is assumed.
+
 ### About Frameworks
 
 Official support for third-party iOS frameworks was introduced with Xcode 6 and iOS 8. Prior to that, developers had been using frameworks in an unsupported fashion by placing shared libraries and resources inside a filesystem structure that mimicked that of the frameworks published by Apple.
@@ -46,46 +50,76 @@ You’ll also be able to step into CleanroomASL code directly in the debugger wi
 
 ### The strategy
 
-Manual integration is a bit involved, so here's an overview of what we'll be doing:
+Manual integration is a bit involved, but there are three high-level tasks that you'll need to perform:
 
 1. Download the CleanroomASL source into your project structure
 
-2. Embedding `CleanroomASL.xcodeproj` in your Xcode project
+2. Embed `CleanroomASL.xcodeproj` in your Xcode project
 
-3. ???
+3. Add `CleanroomASL.framework` and the required dependencies to your application target
 
-4. *Profit!*
+### Getting Started
+
+Launch Terminal on your Mac, and `cd` to the directory that contains your application.
+
+For our integration examples, we're going to be showing the top-level `CleanroomASL` directory inside a `Libraries` directory at the root level of of your application's source.
+
+> You do not *need* to use this structure, although we'd recommend it, if only to make the following examples work for you without translation.
+
+If you do not already have a `Libraries` directory, create one:
+
+```bash
+mkdir libraries
+```
+
+Next, `cd` into `Libraries` and follow the instructions below.
 
 ### Downloading the CleanroomASL source
 
-If you're already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will make it easy to "lock" your own codebase to specific versions of CleanroomASL, making upgrading easier in the long-run.
+If you're already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will allow you to "lock" your codebase to specific versions of CleanroomASL, making it easier to incorporate new versions on whatever schedule works best for you.
 
-If you're using some other form of version control of if you're not using version control at all (shame on you!), then you'll simply want to [download the CleanroomASL source](https://github.com/emaloney/CleanroomASL/archive/master.zip) and unzip it where you want it. (Ideally, you sould put the CleanroomASL source somewhere within your own.)
+If you're using some other form of version control of if you're not using version control at all—*shame on you!*—then you'll want to *clone* the CleanroomASL repository. We suggest putting the CleanroomASL clone somewhere within your application's directory structure, so that it is included in whatever version control regimen you're using.
 
-#### Adding a submodule
+#### Adding CleanroomASL as a submodule
 
-#### Cloning the repo
+From within the `Libraries` directory, issue the following commands to download CleanroomASL and its dependencies:
 
-CleanroomASL is hosted as a GitHub repository containing the source code, Xcode project file, and all other artifacts necessary to build `CleanroomASL.framework` and 
-
-Depending on how your project is set up, adding the CleanroomASL source to your project will require either *adding a git submodile
-
-The first thing you'll need to do is 
-
-
-clone the repository locally. Because this repo contains submodules, you'll need to do a recursive clone:
-
+```bash
+git submodule add https://github.com/emaloney/CleanroomASL.git
+git submodule update --init --recursive
 ```
+
+#### Adding CleanroomASL as a cloned repo
+
+From within the `Libraries` directory, issue the following command to clone the CleanroomASL repository:
+
+```bash
 git clone --recursive https://github.com/emaloney/CleanroomASL.git
 ```
 
-### The Xcode Project
+### Embedding CleanroomASL in your project
 
-The `CleanroomASL.xcodeproj` project contains two targets: `CleanroomASL` and `CleanroomASLTests`.
+Enter the command `open CleanroomASL` to open the folder containing the CleanroomASL source in the Finder. This will reveal the `CleanroomASL.xcodeproj` Xcode project and all files needed to build `CleanroomASL.framework` and its dependencies.
 
-`CleanroomASL` builds an iOS 8 framework.
+Then, open your application in Xcode, and drag `CleanroomASL.xcodeproj` into the Xcode project browser. This will embed CleanroomASL in your project and allow you to add the targets built by CleanroomASL to your project.
 
-`CleanroomASLTests` contains unit tests for the code in the framework.
+### Building CleanroomASL
+
+Before we can add `CleanroomASL.framework` to your app, we have to build it, so Xcode has more information about the framework.
+
+**Important:** The next step will only work when the framework is built for a **device-based run destination**. That means that you must either select the generic "iOS Device" run destination before building, or you must select an actual device (an option that's only available when a device is connected).
+
+Once a device-based run destination has been selected, select the "CleanroomASL" build scheme. Then, select *Build* (⌘B) from the *Product* menu.
+
+Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the "Products" group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will reveal the actual framework you just built.
+
+### Adding the necessary frameworks to your app
+
+###
+
+Next, select your project in the project browser and then select your application target.
+
+Scroll to the bottom of the *General* tab, and click the `+` button at the bottom of the section entitled *Linked Frameworks and Libraries*.
 
 ### Embedding the needed frameworks
 
