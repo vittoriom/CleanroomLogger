@@ -56,9 +56,13 @@ Manual integration is a bit involved, but there are three high-level tasks that 
 
 2. Embed `CleanroomASL.xcodeproj` in your Xcode project
 
-3. Add `CleanroomASL.framework` and the required dependencies to your application target
+3. Build `CleanroomASL.framework`; this will also cause any required dependencies to be built
 
-### Getting Started
+4. Add `CleanroomASL.framework` and the required dependencies to your application target
+
+5. Fix the way Xcode references the frameworks you added in Step 4
+
+#### Getting Started
 
 Launch Terminal on your Mac, and `cd` to the directory that contains your application.
 
@@ -74,13 +78,13 @@ mkdir libraries
 
 Next, `cd` into `Libraries` and follow the instructions below.
 
-### Downloading the CleanroomASL source
+### 1. Download the CleanroomASL source
 
 If you're already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will allow you to "lock" your codebase to specific versions of CleanroomASL, making it easier to incorporate new versions on whatever schedule works best for you.
 
 If you're using some other form of version control of if you're not using version control at all—*shame on you!*—then you'll want to *clone* the CleanroomASL repository. We suggest putting the CleanroomASL clone somewhere within your application's directory structure, so that it is included in whatever version control regimen you're using.
 
-#### Adding CleanroomASL as a submodule
+#### Downloading CleanroomASL as a submodule
 
 From within the `Libraries` directory, issue the following commands to download CleanroomASL and its dependencies:
 
@@ -89,7 +93,7 @@ git submodule add https://github.com/emaloney/CleanroomASL.git
 git submodule update --init --recursive
 ```
 
-#### Adding CleanroomASL as a cloned repo
+#### Downloading CleanroomASL as a cloned repo
 
 From within the `Libraries` directory, issue the following command to clone the CleanroomASL repository:
 
@@ -97,13 +101,13 @@ From within the `Libraries` directory, issue the following command to clone the 
 git clone --recursive https://github.com/emaloney/CleanroomASL.git
 ```
 
-### Embedding CleanroomASL in your project
+### 2. Embed CleanroomASL in your project
 
 Enter the command `open CleanroomASL` to open the folder containing the CleanroomASL source in the Finder. This will reveal the `CleanroomASL.xcodeproj` Xcode project and all files needed to build `CleanroomASL.framework` and its dependencies.
 
 Then, open your application in Xcode, and drag `CleanroomASL.xcodeproj` into the Xcode project browser. This will embed CleanroomASL in your project and allow you to add the targets built by CleanroomASL to your project.
 
-### Building CleanroomASL
+### 3. Build CleanroomASL
 
 Before we can add `CleanroomASL.framework` to your app, we have to build it, so Xcode has more information about the framework.
 
@@ -111,38 +115,47 @@ Before we can add `CleanroomASL.framework` to your app, we have to build it, so 
 
 Once a device-based run destination has been selected, select the "CleanroomASL" build scheme. Then, select *Build* (⌘B) from the *Product* menu.
 
-Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the "Products" group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will reveal the actual framework you just built.
+Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the "Products" group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will open the folder containing the framework binary you just built.
 
-### Adding the necessary frameworks to your app
+If all went well, you should see several files in this folder; the ones we're concerned with are:
 
-###
+- `CleanroomASL.framework`
+- `CleanroomBase.framework`
 
-Next, select your project in the project browser and then select your application target.
+If those files aren't present, something went wrong with the build.
 
-Scroll to the bottom of the *General* tab, and click the `+` button at the bottom of the section entitled *Linked Frameworks and Libraries*.
+### 4. Add the necessary frameworks to your app target
 
-### Embedding the needed frameworks
+In Xcode, select the *General* tab in the build settings for your application target. Scroll to the bottom of the screen to reveal the section entitled *Embedded Binaries* (the second-to-last section).
 
-Once you’ve embedded `CleanroomASL.xcodeproj` in your project, you'll need to ensure that the necessary frameworks are listed in your target’s **Embedded Binaries** and **Linked Frameworks and Libraries** settings:
+Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below  *Embedded Binaries*`.
 
-- `CleanroomASL.framework` — This is the CleanroomASL binary
-- `CleanroomBase.framework` — This is the binary for [CleanroomBase](https://github.com/emaloney/CleanroomBase), which is a dependency of CleanroomASL. It is included as a submodule within CleanroomASL.
+If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
 
-> **Important:** If multiple developers are working from the same project file, you will want to pay close attention to how Xcode adds the frameworks to the project.
->
-> Sometimes, files get added using full paths or certain types of relative paths may specific to that development environment. When this happens, other developers using the project may see build errors related to being unable to locate these frameworks.
->
-> The ideal way to reference each framework path is as "`$(BUILT_PRODUCTS_DIR)/CleanroomASL.framework`" and "`$(BUILT_PRODUCTS_DIR)/CleanroomBase.framework`".
+### 5. Fix how Xcode references the frameworks
 
-*...more here...*
+Unfortunately, Xcode will reference the frameworks you just added in a way that will eventually cause you pain, particularly if multiple developers are sharing the same project file (in which case the pain will be felt almost immediately).
 
+So, to make things sane again, you'll need to make sure Xcode references `CleanroomASL.framework` and `CleanroomBase.framework` using a "Relative to Build Products" location.
 
+To do this, repeat the following steps for each framework:
+
+1. Locate the framework in the Xcode project browser
+2. Select the framework
+3. Ensure the Xcode project window's *Utilities* pane is open
+4. Show the *File Inspector* in the *Utilities* pane
+5. Under the *Identity and Type* section, find the dropdown for the *Location* setting
+6. If the *Location* dropdown does not show "Relative to Build Products" as the setting, select "Relative to Build Products"
+
+Once you've done this for each framework, **_you're all done integrating CleanroomASL!_**
+
+Skip to the [Adding the Swift import](#adding-the-swift-import) section to see how you can import CleanroomASL for use in your Swift code.
 
 ## Carthage Integration
 
 *Coming soon!*
 
-## Importing CleanroomASL
+## Adding the Swift import
 
 Once CleanroomASL has been successfully integrated, all you will need to do is add the following `import` statement to any Swift source file where you want to use CleanroomASL:
 
@@ -150,4 +163,6 @@ Once CleanroomASL has been successfully integrated, all you will need to do is a
 import CleanroomASL
 ```
 
-*Happy coding!*
+Want to read more about CleanroomASL? Check out [the README](https://github.com/emaloney/CleanroomASL/blob/master/README.md).
+
+**_Happy coding!_**
