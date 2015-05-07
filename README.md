@@ -38,7 +38,7 @@ CleanroomASL requires a **mimimum Xcode version of 6.3** to be built, and the re
 
 ## Integration
 
-In order to use CleanroomASL within your project, [you must embed `CleanroomASL.framework` and its dependencies] into your application. 
+In order to use CleanroomASL within your project, [you must embed `CleanroomASL.framework` and its dependencies](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) into your application. 
 
 Then, all you will need to do is add the following `import` statement to any Swift file where you want to use CleanroomASL:
 
