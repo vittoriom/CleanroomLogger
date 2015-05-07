@@ -48,7 +48,7 @@ You’ll also be able to step into CleanroomASL code directly in the debugger wi
 
 Manual integration is a bit involved, so here's an overview of what we'll be doing:
 
-1. Adding the CleanroomASL repo as a submodule to your project
+1. Download the CleanroomASL source into your project structure
 
 2. Embedding `CleanroomASL.xcodeproj` in your Xcode project
 
@@ -56,7 +56,19 @@ Manual integration is a bit involved, so here's an overview of what we'll be doi
 
 4. *Profit!*
 
-### Checking out the repo
+### Downloading the CleanroomASL source
+
+If you're already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will make it easy to "lock" your own codebase to specific versions of CleanroomASL, making upgrading easier in the long-run.
+
+If you're using some other form of version control of if you're not using version control at all (shame on you!), then you'll simply want to [download the CleanroomASL source](https://github.com/emaloney/CleanroomASL/archive/master.zip) and unzip it where you want it. (Ideally, you sould put the CleanroomASL source somewhere within your own.)
+
+#### Adding a submodule
+
+#### Cloning the repo
+
+CleanroomASL is hosted as a GitHub repository containing the source code, Xcode project file, and all other artifacts necessary to build `CleanroomASL.framework` and 
+
+Depending on how your project is set up, adding the CleanroomASL source to your project will require either *adding a git submodile
 
 The first thing you'll need to do is 
 
