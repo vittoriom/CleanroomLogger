@@ -8,6 +8,12 @@ This document describes how to integrate CleanroomASL into your application.
 
 Note that CleanroomASL is built as a *Swift framework*. This has several implications, not the least of which is that it will only work on iOS 8 or above. It is also only supported for use by other Swift code. Some, all or none of it may work from Objective-C; we haven't tried it, we wouldn't recommend it, and we don't support it.
 
+### Contents
+
+- **[Options for integration](#options-for-integration)**
+- **[Instructions for manual integration](#manual-integration)**
+- **[Instructions for integration using Carthage](#carthage-integration)**
+
 ### Requirements
 
 CleanroomASL requires a **mimimum Xcode version of 6.3** to be built, and the resulting binary can be used on **iOS 8.1 and higher**.
@@ -36,7 +42,7 @@ There are two supported options for integration:
 
 - **Manual integration** — The `CleanroomASL.xcodeproj` Xcode project file is embedded directly within your project. You then add `CleanroomASL.framework` and its dependencies to the *Embedded Binaries* and *Linked Frameworks and Libraries* sections under the *General* tab for your application target.
 
-- **Carthage integration** — [Carthage](https://github.com/Carthage/Carthage) is a dependency package manager designed to build frameworks. To add CleanroomASL using Carthage, you would add `github "emaloney/CleanroomASL"` to your `Cartfile` and then issue the command `carthage update`.
+- **Carthage integration** — [Carthage](https://github.com/Carthage/Carthage) is a dependency package manager designed to build frameworks. Once Carthage is installed, to add CleanroomASL to your project using Carthage, you would put the line `github "emaloney/CleanroomASL"` in your `Cartfile` and then issue the command `carthage update`.
 
 Whether you choose one over the other largely depends on your preferences and—in the case of Carthage—whether you're already using that solution for other dependencies.
 
@@ -86,6 +92,8 @@ If you're using some other form of version control of if you're not using versio
 
 #### Downloading CleanroomASL as a submodule
 
+> **Important:** Skip this section if you plan to download CleanroomASL using `git clone`.
+
 From within the `Libraries` directory, issue the following commands to download CleanroomASL and its dependencies:
 
 ```bash
@@ -93,7 +101,11 @@ git submodule add https://github.com/emaloney/CleanroomASL.git
 git submodule update --init --recursive
 ```
 
+Next, you're ready to [embed the `CleanroomASL.xcodeproj` project file in your Xcode project](#2-embed-cleanroomasl-in-your-project).
+
 #### Downloading CleanroomASL as a cloned repo
+
+> **Important:** Skip this section if you already performed the tasks outlined in "Downloading CleanroomASL as a submodule" above.
 
 From within the `Libraries` directory, issue the following command to clone the CleanroomASL repository:
 
@@ -103,7 +115,7 @@ git clone --recursive https://github.com/emaloney/CleanroomASL.git
 
 ### 2. Embed CleanroomASL in your project
 
-Enter the command `open CleanroomASL` to open the folder containing the CleanroomASL source in the Finder. This will reveal the `CleanroomASL.xcodeproj` Xcode project and all files needed to build `CleanroomASL.framework` and its dependencies.
+In the Terminal, the command `open CleanroomASL` to open the folder containing the CleanroomASL source in the Finder. This will reveal the `CleanroomASL.xcodeproj` Xcode project and all files needed to build `CleanroomASL.framework` and its dependencies.
 
 Then, open your application in Xcode, and drag `CleanroomASL.xcodeproj` into the Xcode project browser. This will embed CleanroomASL in your project and allow you to add the targets built by CleanroomASL to your project.
 
@@ -128,7 +140,7 @@ If those files aren't present, something went wrong with the build.
 
 In Xcode, select the *General* tab in the build settings for your application target. Scroll to the bottom of the screen to reveal the section entitled *Embedded Binaries* (the second-to-last section).
 
-Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below  *Embedded Binaries*`.
+Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below  *Embedded Binaries*.
 
 If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
 
