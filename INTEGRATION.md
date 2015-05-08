@@ -252,7 +252,7 @@ In Xcode, select the *Build Phases* tab in the build settings for your applicati
 
 At the top-left corner of the list of build phases, you will see a "`+`" icon. Click that icon and add a "New Run Script Phase".
 
-Then, in the script editor area just below the "Shell" line, add the following text:
+Then, in the script editor area just below the *Shell* line, add the following text:
 
 ```
 $PROJECT_DIR/Carthage/Checkouts/CleanroomASL/BuildControl/bin/stripCarthageFrameworks.sh
