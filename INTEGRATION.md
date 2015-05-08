@@ -177,11 +177,11 @@ carthage version
 
 If Carthage is available, the version you have installed will be shown.
 
-> As of this writing, the current version ofCarthage is 0.6.4.
+> As of this writing, the current version of Carthage is 0.6.4.
 
-If Carthage is not present, you will see an error that looks like
+If Carthage is not present, you will see an error that looks like:
 
-```bash
+```
 -bash: carthage: command not found
 ```
 
@@ -240,7 +240,15 @@ If those files aren't present, something went wrong with the build.
 
 ### 3. Add the necessary frameworks to your app target
 
+In Xcode, select the *General* tab in the build settings for your application target. Scroll to the bottom of the screen to reveal the section entitled *Embedded Binaries* (the second-to-last section).
+
+Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below *Embedded Binaries*.
+
+If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
+
 ### 4. Create a build phase to strip the Carthage frameworks
+
+
 
 ## Adding the Swift import
 
