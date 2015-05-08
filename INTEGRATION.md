@@ -54,9 +54,9 @@ This will ensure that CleanroomASL is built with the exact same settings you’r
 
 You’ll also be able to step into CleanroomASL code directly in the debugger without worrying about `.dSYM` resolution, which is very helpful.
 
-### The strategy
+### An Overview of the Process
 
-Manual integration is a bit involved, but there are three high-level tasks that you'll need to perform:
+Manual integration is a bit involved; there are five high-level tasks that you'll need to perform:
 
 1. Download the CleanroomASL source into your project structure
 
@@ -165,33 +165,54 @@ Skip to the [Adding the Swift import](#adding-the-swift-import) section to see h
 
 ## Carthage Integration
 
-Carthage integration is a little simpler than manual integration.
+Carthage is a third-party package dependency manager for iOS and Mac OS X. Carthage works by building frameworks for each of a project's dependencies.
 
-To get started, you'll first need to ensure that Carthage is installed.
+### Verifying Carthage availability
 
-Open Terminal and type:
+Before attempting any of the steps below, you should verify that Carthage is available on your system. To do that, open Terminal and execute the command:
 
 ```bash
 carthage version
 ```
 
-If Carthage is installed, you should see a version number. 
+If Carthage is available, the version you have installed will be shown.
 
-> **Note:** The examples in this document were tested using Carthage 0.6.4.
+> As of this writing, the current version ofCarthage is 0.6.4.
 
-If you do not have Carthage installed but would like to use it, [you can find installation instructions on the project page](https://github.com/Carthage/Carthage#installing-carthage)
+If Carthage is not present, you will see an error that looks like
 
-### Updating the Cartfile
+```bash
+-bash: carthage: command not found
+```
 
-Once you're sure Carthage is installed, `cd` to your project's root directory in Terminal.
+Installing Carthage is beyond the scope of this document. If you do not have Carthage installed but would like to use it, [you can find installation instructions on the project page](https://github.com/Carthage/Carthage#installing-carthage).
 
-Then, edit the file named `Cartfile`—creating it if necessary—to add the following line:
+### How Carthage builds work
+
+For iOS, Carthage builds *universal binary* frameworks, meaning that they will work in the iOS Simulator as well as on actual devices. However, because Apple will not accept App Store submissions containing universal binary code, Carthage requires the addition of a build step that strips all unused architectures out of the universal binaries. That way, when building for the simulator, device code is removed; conversely, when creating a device build, simulator code is removed. This keeps Apple happy, while also making it easy to switch back and forth between running on the device and in the simulator.
+
+### An Overview of the Process
+
+Carthage integration is a little simpler than manual integration:
+
+1. Update the `Cartfile` with an entry for CleanroomASL
+2. Download and build CleanroomASL`; this will also cause any required dependencies to be built
+3. Add `CleanroomASL.framework` and the required dependencies to your application target
+4. Create a build phase to strip the extra processor architectures from the Carthage frameworks
+
+### Getting Started
+
+We'll start in the Terminal, by `cd`ing into to your project's root directory. The commands you'll need to issue below can all be done from this location.
+
+### 1. Update the Cartfile
+
+In your project's root directory, edit the file named `Cartfile`—creating it if necessary—to add the following line:
 
 ```
 github "emaloney/CleanroomASL"
 ```
 
-### Downloading & Building using Carthage
+### 2. Download & Build using Carthage
 
 In Terminal, issue the command:
 
@@ -205,7 +226,9 @@ This will cause Carthage to download and build CleanroomASL.
 
 Carthage puts its files within a top-level directory called `Carthage` at the root of your project's directory structure (i.e., the `Carthage` directory is a sibling of the `Cartfile`). Within this directory are two more directories: `Build`, which contains the frameworks built by Carthage; and `Checkouts`, which contains fully populated directory structures for each repository specified in the `Cartfile`.
 
-To see the frameworks built by Carthage, execute the following Terminal command from within your project's root directory:
+> We recommend adding `Carthage/` to your `.gitignore` file, since the files in the `Carthage` directory are the equivalent of build artifacts.
+
+Once Carthage is done building CleanroomASL and its dependencies, you can execute the following Terminal command to see the frameworks built by Carthage:
 
 ```bash
 open Carthage/Build/iOS
@@ -215,9 +238,9 @@ This will cause the directory containing `CleanroomASL.framework` and its requir
 
 If those files aren't present, something went wrong with the build.
 
-#### How Carthage builds work
+### 3. Add the necessary frameworks to your app target
 
-For iOS, Carthage builds *universal binary* frameworks, meaning that they will work in the iOS Simulator as well as on actual devices. However, Apple will not accept App 
+### 4. Create a build phase to strip the Carthage frameworks
 
 ## Adding the Swift import
 
