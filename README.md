@@ -135,3 +135,11 @@ To avoid this causing confusion, the CleanroomASL framework automatically sets a
 Apple’s native API for ASL is written in C. The definitive documentation for ASL can be found in the manpage that can be accessed using the [`man 3 asl`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html) Terminal command.
 
 Peter Hosey’s *Idle Time* blog also has [a number of informative posts on ASL](http://boredzo.org/blog/archives/category/programming/apple-system-logger) helpful to anyone who wants to understand how it works.
+
+## Acknowledgements
+
+CleanroomLogger embeds the following open-source project:
+
+- [CleanroomBase](https://github.com/emaloney/CleanroomBase) — Low-level utilities for developing Swift-based iOS applications
+
+[API documentation for CleanroomASL](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) is generated using [Realm](http://realm.io)'s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
