@@ -6,7 +6,7 @@ CleanroomASL is an iOS framework providing a Swift-based API for writing to and 
 
 CleanroomASL is designed as a thin wrapper around ASL’s native C API that makes use of Swift concepts where appropriate to make coding easier-to-understand and less error-prone.
 
-CleanroomASL is part of [the Cleanroom Project](http://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
+CleanroomASL is part of [the Cleanroom Project](http://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com) and is distributed under [the MIT license](https://github.com/emaloney/CleanroomASL/blob/master/LICENSE). CleanroomASL is provided for your use, free-of-charge and on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
 
 #### Who It’s For
 
@@ -22,21 +22,13 @@ CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API tha
 
 CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.
 
-#### Pre-Release Software
+#### Contributing
 
-CleanroomASL is in active development, and as such, it needs additional unit tests, more documentation, and probably a bit of debugging.
+CleanroomASL is in active development, and we welcome your contributions.
 
-If you’d like to contribute to this or any other Cleanroom Project repo, please read the [contribution guidelines](https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project).
+If you’d like to contribute to this or any other Cleanroom Project repo, please read [the contribution guidelines](https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project).
 
-CleanroomASL is pre-release software. It is provided for your use, free-of-charge and on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
-
-#### Requirements
-
-CleanroomASL requires a **mimimum Xcode version of 6.3** to be built, and the resulting binary can be used on **iOS 8.1 and higher**.
-
-**CleanroomASL is designed specificially to be used from Swift code.** Although you *may* be able to use some (or all) of it from Objective-C, we do not specifically support it and can’t provide any help or advice for doing so.
-
-## Integration
+## Adding CleanroomASL to your project
 
 In order to use CleanroomASL within your project, [you must embed `CleanroomASL.framework` and its dependencies](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) into your application. 
 
@@ -143,7 +135,3 @@ To avoid this causing confusion, the CleanroomASL framework automatically sets a
 Apple’s native API for ASL is written in C. The definitive documentation for ASL can be found in the manpage that can be accessed using the [`man 3 asl`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html) Terminal command.
 
 Peter Hosey’s *Idle Time* blog also has [a number of informative posts on ASL](http://boredzo.org/blog/archives/category/programming/apple-system-logger) helpful to anyone who wants to understand how it works.
-
-## License
-
-CleanroomASL is distributed under the [MIT license](LICENSE).
