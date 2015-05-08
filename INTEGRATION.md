@@ -248,7 +248,19 @@ If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framew
 
 ### 4. Create a build phase to strip the Carthage frameworks
 
+In Xcode, select the *Build Phases* tab in the build settings for your application target.
 
+At the top-left corner of the list of build phases, you will see a "`+`" icon. Click that icon and add a "New Run Script Phase".
+
+Then, in the script editor area just below the *Shell* line, add the following text:
+
+```
+$PROJECT_DIR/Carthage/Checkouts/CleanroomASL/BuildControl/bin/stripCarthageFrameworks.sh
+```
+
+This script will ensure that the frameworks built by Carthage are stripped of unnecessary processor architectures. Without this step, Apple would reject your app submission because the Carthage frameworks would be included as universal binaries, which [isn't allowed in App Store submissions](http://www.openradar.me/radar?id=6409498411401216).
+
+Once you've done this, try building your application. If you don't see any errors, **_you're all done integrating CleanroomASL!_**
 
 ## Adding the Swift import
 
