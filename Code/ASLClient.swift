@@ -193,6 +193,11 @@ public class ASLClient
             }
 
             asl_send(self.client, message.aslObject)
+
+            if logSynchronously && (self.useRawStdErr || (self.options & Options.StdErr)) {
+                // flush stderr to ensure the console is up-to-date if we hit a breakpoint
+                fflush(stderr)
+            }
         }
     }
 
