@@ -165,7 +165,59 @@ Skip to the [Adding the Swift import](#adding-the-swift-import) section to see h
 
 ## Carthage Integration
 
-*Coming soon!*
+Carthage integration is a little simpler than manual integration.
+
+To get started, you'll first need to ensure that Carthage is installed.
+
+Open Terminal and type:
+
+```bash
+carthage version
+```
+
+If Carthage is installed, you should see a version number. 
+
+> **Note:** The examples in this document were tested using Carthage 0.6.4.
+
+If you do not have Carthage installed but would like to use it, [you can find installation instructions on the project page](https://github.com/Carthage/Carthage#installing-carthage)
+
+### Updating the Cartfile
+
+Once you're sure Carthage is installed, `cd` to your project's root directory in Terminal.
+
+Then, edit the file named `Cartfile`—creating it if necessary—to add the following line:
+
+```
+github "emaloney/CleanroomASL"
+```
+
+### Downloading & Building using Carthage
+
+In Terminal, issue the command:
+
+```bash
+carthage update
+```
+
+This will cause Carthage to download and build CleanroomASL.
+
+#### Where Carthage puts its files
+
+Carthage puts its files within a top-level directory called `Carthage` at the root of your project's directory structure (i.e., the `Carthage` directory is a sibling of the `Cartfile`). Within this directory are two more directories: `Build`, which contains the frameworks built by Carthage; and `Checkouts`, which contains fully populated directory structures for each repository specified in the `Cartfile`.
+
+To see the frameworks built by Carthage, execute the following Terminal command from within your project's root directory:
+
+```bash
+open Carthage/Build/iOS
+```
+
+This will cause the directory containing `CleanroomASL.framework` and its required `CleanroomBase.framework` dependency to open in Finder.
+
+If those files aren't present, something went wrong with the build.
+
+#### How Carthage builds work
+
+For iOS, Carthage builds *universal binary* frameworks, meaning that they will work in the iOS Simulator as well as on actual devices. However, Apple will not accept App 
 
 ## Adding the Swift import
 
