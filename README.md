@@ -75,10 +75,15 @@ The `ASLQueryObject` class is used to perform search queries of the Apple System
 ```swift
 let query = ASLQueryObject()
 query.setQueryKey(.Message, value: nil, operation: .KeyExists, modifiers: .None)
-query.setQueryKey(.Time, value: Int(startTime.timeIntervalSince1970 - 60), operation: .GreaterThanOrEqualTo, modifiers: .None)
+query.setQueryKey(.Level, value: ASLPriorityLevel.Warning.priorityString, operation: .LessThanOrEqualTo, modifiers: .None)
+query.setQueryKey(.Time, value: Int(NSDate().timeIntervalSince1970 - (60 * 5)), operation: .GreaterThanOrEqualTo, modifiers: .None)
 ```
 
-The code above creates a search query that will find all log entries recorded in the last minute that have a value for the `.Message` attribute key. To start the search, pass the `query` object to the client's `search()` function and provide a callback that will be executed once for each log entry matching the search criteria specified by `query`:
+The code above creates a search query that will find all log entries with a minimum priority level of `.Warning` recorded in the last 5 minutes that also have a value for the `.Message` attribute key.
+
+> **Note:** The sort order of ASL priority levels is counter-intuitive; the *highest priority level* (`.Emergency`) has the *lowest numeric value* (`0`) whereas the *lowest priority level* (`.Debug`) has the *highest numeric value* (`7`). Because CleanroomASL aims to be as thin a wrapper around ASL as possible, we do not change this behavior. That's why the `.LessThanOrEqualTo` operation is used to find messages with an `ASLPriorityLevel` of `.Warning` and higher.
+
+To start the search, pass the `query` object to the client's `search()` function and provide a callback that will be executed once for each log entry matching the search criteria specified by `query`:
 
 ```swift
 client.search(query) { record in
