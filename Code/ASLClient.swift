@@ -162,12 +162,18 @@ public class ASLClient
         asl_close(client)
     }
 
-    private func dispatcher(synchronously: Bool = false)(block: dispatch_block_t)
+    private func dispatcher(_ currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false)(block: dispatch_block_t)
     {
-        if synchronously {
-            return dispatch_sync(queue, block)
-        } else {
-            return dispatch_async(queue, block)
+        let shouldDispatch = currentQueue == nil || self.queue != currentQueue!
+        if shouldDispatch {
+            if synchronously {
+                return dispatch_sync(queue, block)
+            } else {
+                return dispatch_async(queue, block)
+            }
+        }
+        else {
+            block()
         }
     }
 
@@ -181,10 +187,18 @@ public class ASLClient
                 production code; it will degrade performance. Synchronous
                 logging can be useful when debugging to ensure that up-to-date
                 log messages are visible in the console.
+    
+    :param:     currentQueue If the log message is already being processed on a
+                given GCD queue, a reference to that queue should be passed in.
+                That way, if `currentQueue` has the same value as the receiver's 
+                `queue` property, no additional dispatching will take place. 
+                This is needed to avoid deadlocks when external code directly
+                uses the receiver's queue to perform operations related to
+                logging.
     */
-    public func log(message: ASLMessageObject, logSynchronously: Bool = false)
+    public func log(message: ASLMessageObject, logSynchronously: Bool = false, currentQueue: dispatch_queue_t? = nil)
     {
-        let dispatch = dispatcher(synchronously: logSynchronously)
+        let dispatch = dispatcher(currentQueue, synchronously: logSynchronously)
         dispatch {
             if message[.ReadUID] == nil {
                 // the .ReadUID attribute determines the processes that can
