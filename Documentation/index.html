@@ -143,10 +143,17 @@
 <p>The <code>ASLQueryObject</code> class is used to perform search queries of the Apple System Log. Using the <code>setQueryKey()</code> function, you can specify search criteria for the messages you want to find:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">ASLQueryObject</span><span class="p">()</span>
 <span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Message</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">KeyExists</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
-<span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Time</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="n">startTime</span><span class="o">.</span><span class="n">timeIntervalSince1970</span> <span class="o">-</span> <span class="mi">60</span><span class="p">),</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">GreaterThanOrEqualTo</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Level</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">ASLPriorityLevel</span><span class="o">.</span><span class="kt">Warning</span><span class="o">.</span><span class="n">priorityString</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">LessThanOrEqualTo</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="nf">setQueryKey</span><span class="p">(</span><span class="o">.</span><span class="kt">Time</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="kt">NSDate</span><span class="p">()</span><span class="o">.</span><span class="n">timeIntervalSince1970</span> <span class="o">-</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)),</span> <span class="nv">operation</span><span class="p">:</span> <span class="o">.</span><span class="kt">GreaterThanOrEqualTo</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="o">.</span><span class="kt">None</span><span class="p">)</span>
 </code></pre>
 
-<p>The code above creates a search query that will find all log entries recorded in the last minute that have a value for the <code>.Message</code> attribute key. To start the search, pass the <code>query</code> object to the client&rsquo;s <code>search()</code> function and provide a callback that will be executed once for each log entry matching the search criteria specified by <code>query</code>:</p>
+<p>The code above creates a search query that will find all log entries with a minimum priority level of <code>.Warning</code> recorded in the last 5 minutes that also have a value for the <code>.Message</code> attribute key.</p>
+
+<blockquote>
+<p><strong>Note:</strong> The sort order of ASL priority levels is counter-intuitive; the <em>highest priority level</em> (<code>.Emergency</code>) has the <em>lowest numeric value</em> (<code>0</code>) whereas the <em>lowest priority level</em> (<code>.Debug</code>) has the <em>highest numeric value</em> (<code>7</code>). Because CleanroomASL aims to be as thin a wrapper around ASL as possible, we do not change this behavior. That&rsquo;s why the <code>.LessThanOrEqualTo</code> operation is used to find messages with an <code>ASLPriorityLevel</code> of <code>.Warning</code> and higher.</p>
+</blockquote>
+
+<p>To start the search, pass the <code>query</code> object to the client&rsquo;s <code>search()</code> function and provide a callback that will be executed once for each log entry matching the search criteria specified by <code>query</code>:</p>
 <pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="p">{</span> <span class="n">record</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">record</span> <span class="o">=</span> <span class="n">record</span> <span class="p">{</span>
       <span class="c1">// we have a search query result record; process it here
@@ -216,11 +223,20 @@
 <p>Apple’s native API for ASL is written in C. The definitive documentation for ASL can be found in the manpage that can be accessed using the <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html"><code>man 3 asl</code></a> Terminal command.</p>
 
 <p>Peter Hosey’s <em>Idle Time</em> blog also has <a href="http://boredzo.org/blog/archives/category/programming/apple-system-logger">a number of informative posts on ASL</a> helpful to anyone who wants to understand how it works.</p>
+<a href='#acknowledgements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='acknowledgements'>Acknowledgements</h2>
+
+<p>CleanroomLogger embeds the following open-source project:</p>
+
+<ul>
+<li><a href="https://github.com/emaloney/CleanroomBase">CleanroomBase</a> — Low-level utilities for developing Swift-based iOS applications</li>
+</ul>
+
+<p><a href="https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html">API documentation for CleanroomASL</a> is generated using <a href="http://realm.io">Realm</a>&rsquo;s <a href="https://github.com/realm/jazzy/">jazzy</a> project, maintained by <a href="https://github.com/jpsim">JP Simard</a> and <a href="https://github.com/segiddins">Samuel E. Giddins</a>.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-08)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
