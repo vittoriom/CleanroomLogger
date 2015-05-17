@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Gilt Groupe. All rights reserved.
 //
 
-import CleanroomBase
+import Foundation
 
 /**
 Extends the `asl_object_t` type by adding type-safe subscripting for message

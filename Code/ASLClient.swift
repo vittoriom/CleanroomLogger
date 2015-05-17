@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Gilt Groupe. All rights reserved.
 //
 
-import CleanroomBase
+import Foundation
 
 /**
 `ASLClient` instances maintain a client connection to the ASL daemon, and can
