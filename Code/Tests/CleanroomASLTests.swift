@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import CleanroomBase
 import CleanroomASL
 
 class CleanroomASLTests: XCTestCase

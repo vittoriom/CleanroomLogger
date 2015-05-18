@@ -12,7 +12,6 @@
 		3B45968F1AE191D50049A743 /* ASLAttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */; };
 		3B4596901AE191D50049A743 /* ASLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968B1AE191D50049A743 /* ASLObject.swift */; };
 		3B4596911AE191D50049A743 /* ASLPriorityLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */; };
-		3B45969B1AE191F20049A743 /* CleanroomBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4596981AE191E50049A743 /* CleanroomBase.framework */; };
 		3B5264771AE7FCA100631DC5 /* CleanroomASLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5264741AE7FC9700631DC5 /* CleanroomASLTests.swift */; };
 		3B5264821AE8094B00631DC5 /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5264811AE8094B00631DC5 /* libSystem.dylib */; };
 /* End PBXBuildFile section */
@@ -25,20 +24,6 @@
 			remoteGlobalIDString = 3B45966A1AE16BE60049A743;
 			remoteInfo = CleanroomASL;
 		};
-		3B4596971AE191E50049A743 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B8FBD521AC070B50068756A;
-			remoteInfo = CleanroomBase;
-		};
-		3B4596991AE191E50049A743 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B8FBD5D1AC070B50068756A;
-			remoteInfo = CleanroomBaseTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +33,6 @@
 		3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLAttributeKey.swift; path = Code/ASLAttributeKey.swift; sourceTree = SOURCE_ROOT; };
 		3B45968B1AE191D50049A743 /* ASLObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLObject.swift; path = Code/ASLObject.swift; sourceTree = SOURCE_ROOT; };
 		3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLPriorityLevel.swift; path = Code/ASLPriorityLevel.swift; sourceTree = SOURCE_ROOT; };
-		3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CleanroomBase.xcodeproj; path = Libraries/CleanroomBase/CleanroomBase.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3B5264741AE7FC9700631DC5 /* CleanroomASLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CleanroomASLTests.swift; path = Code/Tests/CleanroomASLTests.swift; sourceTree = SOURCE_ROOT; };
 		3B52647F1AE8093500631DC5 /* libsystem_asl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsystem_asl.dylib; path = usr/lib/system/libsystem_asl.dylib; sourceTree = SDKROOT; };
 		3B5264811AE8094B00631DC5 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
@@ -59,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B45969B1AE191F20049A743 /* CleanroomBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,19 +103,9 @@
 			children = (
 				3B5264811AE8094B00631DC5 /* libSystem.dylib */,
 				3B52647F1AE8093500631DC5 /* libsystem_asl.dylib */,
-				3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */,
 			);
 			name = Libraries;
 			path = CleanroomASL;
-			sourceTree = "<group>";
-		};
-		3B4596931AE191E50049A743 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3B4596981AE191E50049A743 /* CleanroomBase.framework */,
-				3B45969A1AE191E50049A743 /* CleanroomBaseTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,12 +184,6 @@
 			mainGroup = 3B4596611AE16BE60049A743;
 			productRefGroup = 3B45966C1AE16BE60049A743 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3B4596931AE191E50049A743 /* Products */;
-					ProjectRef = 3B4596921AE191E50049A743 /* CleanroomBase.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3B45966A1AE16BE60049A743 /* CleanroomASL */,
@@ -224,23 +191,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3B4596981AE191E50049A743 /* CleanroomBase.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CleanroomBase.framework;
-			remoteRef = 3B4596971AE191E50049A743 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B45969A1AE191E50049A743 /* CleanroomBaseTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CleanroomBaseTests.xctest;
-			remoteRef = 3B4596991AE191E50049A743 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3B4596691AE16BE60049A743 /* Resources */ = {

@@ -129,30 +129,29 @@ Once a device-based run destination has been selected, select the "CleanroomASL"
 
 Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the "Products" group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will open the folder containing the framework binary you just built.
 
-If all went well, you should see several files in this folder; the ones we're concerned with are:
+If all went well, you should see several files in this folder; the one we're concerned with is:
 
 - `CleanroomASL.framework`
-- `CleanroomBase.framework`
 
-If those files aren't present, something went wrong with the build.
+If that file isn't present, something went wrong with the build.
 
 ### 4. Add the necessary frameworks to your app target
 
 In Xcode, select the *General* tab in the build settings for your application target. Scroll to the bottom of the screen to reveal the section entitled *Embedded Binaries* (the second-to-last section).
 
-Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below  *Embedded Binaries*.
+Go back to Finder, select `CleanroomASL.framework` and then drag it into the list area directly below *Embedded Binaries*.
 
-If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
+If successful, you should see `CleanroomASL.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
 
 ### 5. Fix how Xcode references the frameworks
 
 Unfortunately, Xcode will reference the frameworks you just added in a way that will eventually cause you pain, particularly if multiple developers are sharing the same project file (in which case the pain will be felt almost immediately).
 
-So, to make things sane again, you'll need to make sure Xcode references `CleanroomASL.framework` and `CleanroomBase.framework` using a "Relative to Build Products" location.
+So, to make things sane again, you'll need to make sure Xcode references `CleanroomASL.framework` using a "Relative to Build Products" location.
 
-To do this, repeat the following steps for each framework:
+To do this:
 
-1. Locate the framework in the Xcode project browser
+1. Locate the `CleanroomASL.framework` in the Xcode project browser
 2. Select the framework
 3. Ensure the Xcode project window's *Utilities* pane is open
 4. Show the *File Inspector* in the *Utilities* pane
@@ -234,17 +233,17 @@ Once Carthage is done building CleanroomASL and its dependencies, you can execut
 open Carthage/Build/iOS
 ```
 
-This will cause the directory containing `CleanroomASL.framework` and its required `CleanroomBase.framework` dependency to open in Finder.
+This will cause the directory containing `CleanroomASL.framework` to open in Finder.
 
-If those files aren't present, something went wrong with the build.
+If that file isn't present, something went wrong with the build.
 
 ### 3. Add the necessary frameworks to your app target
 
 In Xcode, select the *General* tab in the build settings for your application target. Scroll to the bottom of the screen to reveal the section entitled *Embedded Binaries* (the second-to-last section).
 
-Go back to Finder, and option-click `CleanroomASL.framework` and `CleanroomBase.framework` to select them both, and then drag them into the list area directly below *Embedded Binaries*.
+Go back to Finder, select `CleanroomASL.framework` and then drag it into the list area directly below *Embedded Binaries*.
 
-If successful, you should see `CleanroomASL.framework` and `CleanroomBase.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
+If successful, you should see `CleanroomASL.framework` listed under both the *Embedded Binaries* and *Linked Frameworks and Libraries* sections.
 
 ### 4. Create a build phase to strip the Carthage frameworks
 

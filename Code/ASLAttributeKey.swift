@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Gilt Groupe. All rights reserved.
 //
 
-import CleanroomBase
-
 /**
 The `ASLAttributeKey` enum represents the documented `ASL_KEY_*` constant
 values.

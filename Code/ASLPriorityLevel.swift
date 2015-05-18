@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Gilt Groupe. All rights reserved.
 //
 
-import CleanroomBase
+import Foundation
 
 /**
 The `ASLPriorityLevel` enum represents the documented `ASL_LEVEL_*` constant
 values.
 */
-public enum ASLPriorityLevel: Int32, EnumerableEnum
+public enum ASLPriorityLevel: Int32 // EnumerableEnum
 {
     /** Represents the `ASL_LEVEL_EMERG` constant. */
     case Emergency  = 0
