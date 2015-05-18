@@ -143,8 +143,4 @@ Peter Hosey’s *Idle Time* blog also has [a number of informative posts on ASL]
 
 ## Acknowledgements
 
-CleanroomLogger embeds the following open-source project:
-
-- [CleanroomBase](https://github.com/emaloney/CleanroomBase) — Low-level utilities for developing Swift-based iOS applications
-
 [API documentation for CleanroomASL](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) is generated using [Realm](http://realm.io)'s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
