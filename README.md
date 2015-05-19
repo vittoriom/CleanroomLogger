@@ -30,9 +30,9 @@ If you’d like to contribute to this or any other Cleanroom Project repo, pleas
 
 ## Adding CleanroomASL to your project
 
-In order to use CleanroomASL within your project, [you must embed `CleanroomASL.framework` and its dependencies](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) into your application. 
+You'll need to [integrate CleanroomASL into your project](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) it provides.
 
-Then, all you will need to do is add the following `import` statement to any Swift file where you want to use CleanroomASL:
+Then, just add the following `import` statement to any Swift file where you want to use CleanroomASL:
 
 ```swift
 import CleanroomASL
