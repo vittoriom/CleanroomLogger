@@ -30,9 +30,14 @@ If you’d like to contribute to this or any other Cleanroom Project repo, pleas
 
 ## Adding CleanroomASL to your project
 
-You'll need to [integrate CleanroomASL into your project](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) it provides.
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Then, just add the following `import` statement to any Swift file where you want to use CleanroomASL:
+You'll need to [integrate CleanroomASL into your project](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) it provides. You can choose:
+
+- [Manual integration](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md#manual-integration), wherein you embed CleanroomASL's Xcode project within your own, **_or_**
+- [Using the Carthage dependency manager](https://github.com/emaloney/CleanroomASL/blob/master/INTEGRATION.md#carthage-integration) to build a framework that you then embed in your application.
+ 
+Once integrated, just add the following `import` statement to any Swift file where you want to use CleanroomASL:
 
 ```swift
 import CleanroomASL
