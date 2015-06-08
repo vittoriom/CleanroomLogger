@@ -332,15 +332,6 @@ elif [[ -z $UNTAG_VERSION && -z $SET_VERSION ]]; then
 fi
 
 #
-# see if we've got uncommitted changes
-#
-git diff-index --quiet HEAD --
-REPO_IS_DIRTY=$?
-if [[ $REPO_IS_DIRTY && ! $IGNORE_DIRTY_FILES && ! $COMMIT_DIRTY_FILES ]]; then
-	exitWithErrorShowingHelp "You have uncommitted changes in this repo; won't do anything" "(use --ignore-dirty-files or --commit-dirty-files to bypass this error)"
-fi
-
-#
 # figure out what the current version is
 #
 PLIST_BUDDY=/usr/libexec/PlistBuddy
@@ -392,6 +383,14 @@ elif [[ ! -z $RELEASE_TYPE ]]; then
 	esac
 	
 	VERSION="${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}"
+fi
+
+#
+# see if we've got uncommitted changes
+#
+git diff-index --quiet HEAD -- ; REPO_IS_DIRTY=$?
+if [[ $REPO_IS_DIRTY != 0 && -z $IGNORE_DIRTY_FILES && -z $COMMIT_DIRTY_FILES ]]; then
+	exitWithErrorShowingHelp "You have uncommitted changes in this repo; won't do anything" "(use --ignore-dirty-files or --commit-dirty-files to bypass this error)"
 fi
 
 confirmationPrompt "Releasing version $VERSION (current is $CURRENT_VERSION)"
