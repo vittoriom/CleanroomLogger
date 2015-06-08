@@ -347,7 +347,7 @@ validateVersion "$CURRENT_VERSION" "the CFBundleShortVersionString value in the 
 # now, do the right thing depending on the command-line arguments
 #
 if [[ ! -z $UNTAG_VERSION ]]; then
-	confirmationPrompt "Removing repo tag for version $UNTAG_VER"
+	confirmationPrompt "Removing repo tag for version $UNTAG_VERSION"
 
 	updateStatus "Deleting tag for $UNTAG_VERSION release"
 
@@ -358,6 +358,7 @@ if [[ ! -z $UNTAG_VERSION ]]; then
 	if [[ $PUSH_WHEN_DONE ]]; then
 		executeCommand "git push origin :$UNTAG_VERSION"
 	fi
+	exit 0
 elif [[ ! -z $SET_VERSION ]]; then
 	VERSION=$SET_VERSION
 elif [[ ! -z $RELEASE_TYPE ]]; then
