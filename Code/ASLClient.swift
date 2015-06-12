@@ -17,23 +17,16 @@ across threads, each `ASLClient` has an associated GCD serial queue used to
 ensure that the underlying ASL client connection is only ever used from a single
 thread.
 */
-public class ASLClient
+public final class ASLClient
 {
     /**
     Represents ASL client creation option values, which are used to determine
     the behavior of an `ASLClient`. These are bit-flag values that can be
     combined and otherwise manipulated with bitwise operators.
     */
-    public struct Options: RawOptionSetType, BooleanType
+    public struct Options: OptionSetType
     {
-        /** The raw `UInt32` value representing the receiver's bit flags. */
-        public var rawValue: UInt32 { return value }
-
-        /** Indicates whether the receiver has at least one bit flag set;
-        `true` if it does; `false` if not. */
-        public var boolValue: Bool { return value != 0 }
-
-        private var value: UInt32
+        public let rawValue: UInt32
 
         /**
         Initializes a new `ASLClient.Options` value with the specified
@@ -42,41 +35,22 @@ public class ASLClient
         :param:     rawValue A `UInt32` value containing the raw bit flag
                     values to use.
         */
-        public init(_ rawValue: UInt32) { value = rawValue }
-
-        /**
-        Initializes a new `ASLClient.Options` value with the specified
-        raw value.
-        
-        :param:     rawValue A `UInt32` value containing the raw bit flag
-                    values to use.
-        */
-        public init(rawValue: UInt32) { value = rawValue }
-
-        /**
-        Initializes a new `ASLClient.Options` value with a `nil` literal,
-        which would be the equivalent of the `.None` value.
-        */
-        public init(nilLiteral: ()) { value = 0 }
+        public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /** An `ASLClient.Options` value wherein none of the bit flags are
         set. */
-        public static var allZeros: Options   { return self(0) }
-
-        /** An `ASLClient.Options` value wherein none of the bit flags are
-        set. Equivalent to `allZeros`. */
-        public static var None: Options       { return self(0) }
+        public static let None      = Options(rawValue: 0)
 
         /** An `ASLClient.Options` value with the `ASL_OPT_STDERR` flag set. */
-        public static var StdErr: Options     { return self(0x00000001) }
+        public static let StdErr    = Options(rawValue: 0x00000001)
 
         /** An `ASLClient.Options` value with the `ASL_OPT_NO_DELAY` flag 
         set. */
-        public static var NoDelay: Options    { return self(0x00000002) }
+        public static let NoDelay   = Options(rawValue: 0x00000002)
 
         /** An `ASLClient.Options` value with the `ASL_OPT_NO_REMOTE`
         flag set. */
-        public static var NoRemote: Options   { return self(0x00000004) }
+        public static let NoRemote  = Options(rawValue: 0x00000004)
     }
 
     /** The string that will be used by ASL the *sender* of any log messages
@@ -162,7 +136,7 @@ public class ASLClient
         asl_close(client)
     }
 
-    private func dispatcher(_ currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false)(block: dispatch_block_t)
+    private func dispatcher(currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false)(block: dispatch_block_t)
     {
         let shouldDispatch = currentQueue == nil || self.queue != currentQueue!
         if shouldDispatch {
@@ -208,7 +182,7 @@ public class ASLClient
 
             asl_send(self.client, message.aslObject)
 
-            if logSynchronously && (self.useRawStdErr || (self.options & Options.StdErr)) {
+            if logSynchronously && (self.useRawStdErr || self.options.contains(.StdErr)) {
                 // flush stderr to ensure the console is up-to-date if we hit a breakpoint
                 fflush(stderr)
             }
@@ -239,11 +213,11 @@ public class ASLClient
             while record != nil && keepGoing {
                 if let message = record[.Message] {
                     if let timestampStr = record[.Time] {
-                        if let timestampInt = timestampStr.toInt() {
+                        if let timestampInt = Int(timestampStr) {
                             var timestamp = NSTimeInterval(timestampInt)
 
                             if let nanoStr = record[.TimeNanoSec] {
-                                if let nanoInt = nanoStr.toInt() {
+                                if let nanoInt = Int(nanoStr) {
                                     let nanos = Double(nanoInt) / Double(NSEC_PER_SEC)
                                     timestamp += nanos
                                 }
@@ -253,7 +227,7 @@ public class ASLClient
 
                             var priority = ASLPriorityLevel.Notice
                             if let logLevelStr = record[.Level],
-                                let logLevelInt = logLevelStr.toInt(),
+                                let logLevelInt = Int(logLevelStr),
                                 let level = ASLPriorityLevel(rawValue: Int32(logLevelInt))
                             {
                                 priority = level

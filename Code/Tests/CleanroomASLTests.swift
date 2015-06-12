@@ -50,7 +50,7 @@ class CleanroomASLTests: XCTestCase
         client.search(query) { result in
 
             if let result = result {
-                println("\(result.timestamp): \(result.message)")
+                print("\(result.timestamp): \(result.message)")
             }
 
             signal.lock()

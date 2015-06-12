@@ -282,16 +282,10 @@ public final class ASLQueryObject: ASLObject
     These are bit-flag values that can be combined and otherwise manipulated 
     with bitwise operators.
     */
-    public struct OperationModifiers: RawOptionSetType, BooleanType
+    public struct OperationModifiers: OptionSetType
     {
         /** The raw `UInt32` value representing the receiver's bit flags. */
-        public var rawValue: UInt32 { return value }
-
-        /** Indicates whether the receiver has at least one bit flag set;
-        `true` if it does; `false` if not. */
-        public var boolValue: Bool { return value != 0 }
-
-        private var value: UInt32
+        public let rawValue: UInt32
 
         /**
         Initializes a new `ASLQueryObject.OperationModifiers` value with the
@@ -300,61 +294,42 @@ public final class ASLQueryObject: ASLObject
         :param:     rawValue A `UInt32` value containing the raw bit flag
                     values to use.
         */
-        public init(_ rawValue: UInt32) { value = rawValue }
-
-        /**
-        Initializes a new `ASLQueryObject.OperationModifiers` value with the
-        specified raw value.
-
-        :param:     rawValue A `UInt32` value containing the raw bit flag
-                    values to use.
-        */
-        public init(rawValue: UInt32) { value = rawValue }
-
-        /**
-        Initializes a new `ASLQueryObject.OperationModifiers` value with a `nil`
-        literal, which would be the equivalent of the `.None` value.
-        */
-        public init(nilLiteral: ()) { value = 0 }
+        public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /** An `ASLQueryObject.OperationModifiers` value wherein none of the
         bit flags are set. */
-        public static var allZeros: OperationModifiers          { return self(0) }
-
-        /** An `ASLQueryObject.OperationModifiers` value wherein none of the
-        bit flags are set. Equivalent to `allZeros`. */
-        public static var None: OperationModifiers              { return self(0) }
+        public static let None = OperationModifiers(rawValue: 0)
 
         /** Specifies that the query operation should perform case-insensitive
         matching. Equivalent to `ASL_QUERY_OP_CASEFOLD`. */
-        public static var CaseInsensitive: OperationModifiers   { return self(UInt32(ASL_QUERY_OP_CASEFOLD)) }
+        public static let CaseInsensitive = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_CASEFOLD))
 
         /** Specifies that the query operation will attempt to match the search
         value against the beginning of each record's value for the given key.
         Equivalent to `ASL_QUERY_OP_PREFIX`. */
-        public static var MatchPrefix: OperationModifiers       { return self(UInt32(ASL_QUERY_OP_PREFIX)) }
+        public static let MatchPrefix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_PREFIX))
 
         /** Specifies that the query operation will attempt to match the search
         value against the end of each record's value for the given key. 
         Equivalent to `ASL_QUERY_OP_SUFFIX`. */
-        public static var MatchSuffix: OperationModifiers       { return self(UInt32(ASL_QUERY_OP_SUFFIX)) }
+        public static let MatchSuffix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUFFIX))
 
         /** Specifies that the query operation will attempt to find the search
         value within each record's value for the given key. Equivalent to
         `ASL_QUERY_OP_SUBSTRING`. */
-        public static var MatchSubstring: OperationModifiers    { return self(UInt32(ASL_QUERY_OP_SUBSTRING)) }
+        public static let MatchSubstring = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUBSTRING))
 
         /** Specifies that the query operation will perform numeric instead of
         text comparison. The query operation will interpret the search value
         and each record value as integers before performing the comparison
         operation. Equivalent to `ASL_QUERY_OP_NUMERIC`. */
-        public static var MatchNumeric: OperationModifiers      { return self(UInt32(ASL_QUERY_OP_NUMERIC)) }
+        public static let MatchNumeric = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_NUMERIC))
 
         /** Specifies that the query operation will perform regular expression
         matching. The query operation will interpret the search value as a
         regular expression that will be applied against the each record's
         value for the given key. Equivalent to `ASL_QUERY_OP_REGEX`. */
-        public static var MatchRegex: OperationModifiers        { return self(UInt32(ASL_QUERY_OP_REGEX)) }
+        public static let MatchRegex = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_REGEX))
     }
 
     /**
