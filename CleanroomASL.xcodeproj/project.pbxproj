@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0693251B328D9A0040CDF3 /* Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B0693241B328D9A0040CDF3 /* Bridging-Header.h */; };
 		3B4596771AE16BE60049A743 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B45966B1AE16BE60049A743 /* CleanroomASL.framework */; };
 		3B45968D1AE191D50049A743 /* ASLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4596881AE191D50049A743 /* ASLClient.swift */; };
 		3B45968F1AE191D50049A743 /* ASLAttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */; };
@@ -27,7 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B06931B1B328A380040CDF3 /* CleanroomASL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CleanroomASL-Bridging-Header.h"; sourceTree = "<group>"; };
 		3B06931D1B328A380040CDF3 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		3B06931E1B328A380040CDF3 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
 		3B06931F1B328A380040CDF3 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
@@ -35,6 +35,7 @@
 		3B0693211B328A380040CDF3 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		3B0693221B328A380040CDF3 /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		3B0693231B328A380040CDF3 /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
+		3B0693241B328D9A0040CDF3 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "BuildControl/Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		3B45966B1AE16BE60049A743 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596761AE16BE60049A743 /* CleanroomASLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanroomASLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596881AE191D50049A743 /* ASLClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLClient.swift; path = Code/ASLClient.swift; sourceTree = SOURCE_ROOT; };
@@ -70,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				3B06931C1B328A380040CDF3 /* config */,
-				3B06931B1B328A380040CDF3 /* CleanroomASL-Bridging-Header.h */,
+				3B0693241B328D9A0040CDF3 /* Bridging-Header.h */,
 				3B0693221B328A380040CDF3 /* Info-Framework.plist */,
 				3B0693231B328A380040CDF3 /* Info-Tests.plist */,
 			);
@@ -147,6 +148,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0693251B328D9A0040CDF3 /* Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
