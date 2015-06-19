@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+cleanupXcodeSelect()
+{
+	sudo xcode-select -s "/Applications/Xcode-beta.app/Contents/Developer"
+}
+
+BLESSED_XCODE=$(xcode-select -p)
+if [[ "$BLESSED_XCODE" == "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
+	sudo xcode-select -s "/Applications/Xcode.app/Contents/Developer"
+	trap cleanupXcodeSelect EXIT
+fi
+
 JAZZY_EXECUTABLE=`which jazzy`
 if [[ $? != 0 ]]; then
 	echo "error: The jazzy documentation generator must be installed. Visit https://github.com/realm/jazzy for installation information."
