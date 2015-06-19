@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 
-cleanupXcodeSelect()
-{
-	sudo xcode-select -s "/Applications/Xcode-beta.app/Contents/Developer"
-}
+set -x
 
-BLESSED_XCODE=$(xcode-select -p)
-if [[ "$BLESSED_XCODE" == "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
-	sudo xcode-select -s "/Applications/Xcode.app/Contents/Developer"
-	trap cleanupXcodeSelect EXIT
+if [[ "$DEVELOPER_DIR" == "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
+	export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 fi
-export DEVELOPER_DIR=$(xcode-select -p)
 
 JAZZY_EXECUTABLE=`which jazzy`
 if [[ $? != 0 ]]; then
