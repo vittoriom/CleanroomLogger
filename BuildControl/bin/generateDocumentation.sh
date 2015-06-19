@@ -10,6 +10,7 @@ if [[ "$BLESSED_XCODE" == "/Applications/Xcode-beta.app/Contents/Developer" ]]; 
 	sudo xcode-select -s "/Applications/Xcode.app/Contents/Developer"
 	trap cleanupXcodeSelect EXIT
 fi
+export DEVELOPER_DIR=$(xcode-select -p)
 
 JAZZY_EXECUTABLE=`which jazzy`
 if [[ $? != 0 ]]; then
