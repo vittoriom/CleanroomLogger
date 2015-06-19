@@ -26,6 +26,9 @@ public final class ASLClient
     */
     public struct Options: OptionSetType
     {
+        /**
+        The raw representation of the receiving `ASLClient.Options` value.
+        */
         public let rawValue: UInt32
 
         /**
