@@ -13,3 +13,7 @@ This system assigns version numbers with three independent integer values separa
 ## 1.1.0
 
 1. The dependency on CleanroomBase has been removed. As a result, `CleanroomASL.xcodeproj` will no longer build `CleanroomBase.framework`. If your project references `CleanroomBase.framework` solely as a result of a previous version of CleanroomASL, you may safely remove it. Otherwise, if your project continues to use CleanroomBase, [you will need to integrate with it directly](https://github.com/emaloney/CleanroomBase/blob/master/INTEGRATION.md).
+
+## 1.2.0
+
+**This release uses version 2.0 of the Swift language, and therefore requires Xcode 7 or higher.**
