@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B45966A1AE16BE60049A743"
-               BuildableName = "CleanroomASL.framework"
-               BlueprintName = "CleanroomASL"
-               ReferencedContainer = "container:CleanroomASL.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B4596751AE16BE60049A743"
-               BuildableName = "CleanroomASLTests.xctest"
-               BlueprintName = "CleanroomASLTests"
+               BlueprintIdentifier = "3B5542181B420D18001D6BE7"
+               BuildableName = "CleanroomASL OSX.framework"
+               BlueprintName = "CleanroomASL OSX"
                ReferencedContainer = "container:CleanroomASL.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B45966A1AE16BE60049A743"
-            BuildableName = "CleanroomASL.framework"
-            BlueprintName = "CleanroomASL"
+            BlueprintIdentifier = "3B5542181B420D18001D6BE7"
+            BuildableName = "CleanroomASL OSX.framework"
+            BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B45966A1AE16BE60049A743"
-            BuildableName = "CleanroomASL.framework"
-            BlueprintName = "CleanroomASL"
+            BlueprintIdentifier = "3B5542181B420D18001D6BE7"
+            BuildableName = "CleanroomASL OSX.framework"
+            BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B45966A1AE16BE60049A743"
-            BuildableName = "CleanroomASL.framework"
-            BlueprintName = "CleanroomASL"
+            BlueprintIdentifier = "3B5542181B420D18001D6BE7"
+            BuildableName = "CleanroomASL OSX.framework"
+            BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
