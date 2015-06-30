@@ -6,7 +6,14 @@ This document describes how to integrate CleanroomASL into your application.
 
 *Integration* is the act of embedding the `CleanroomASL.framework` binary into your project, thereby exposing the API it provides to your code.
 
-Note that CleanroomASL is built as a *Swift framework*. This has several implications, not the least of which is that it will only work on iOS 8 or above. It is also only supported for use by other Swift code. Some, all or none of it may work from Objective-C; we haven't tried it, we wouldn't recommend it, and we don't support it.
+Note that CleanroomASL is built as a *Swift framework*, and as such, it has the following base platform requirements:
+
+Platform|Minimum version
+--------|------------------------
+iOS|iOS 8.0
+Mac|OS X 10.10
+
+CleanroomASL is **Swift 2.0**-compliant and requires **Xcode 7 beta 2 or higher** to be built.
 
 ### Contents
 
@@ -14,27 +21,25 @@ Note that CleanroomASL is built as a *Swift framework*. This has several implica
 - **[Instructions for manual integration](#manual-integration)**
 - **[Instructions for integration using Carthage](#carthage-integration)**
 
-### Requirements
+### Prerequisites
 
-CleanroomASL requires **Xcode 7 or higher** to be built, and the resulting binary can be used on **iOS 8.0 and higher**.
+Some familiarity with the Terminal application, the bash command line, and the `git` command is assumed.
 
-We'll also be using the `git` command in the Terminal for installing the CleanroomASL repo in your codebase. These steps have been tested with **git 2.3.2 (Apple Git-55)**, although they should be compatible with a wide range of git versions.
+The steps below have been tested with **git 2.3.2 (Apple Git-55)**, although they should be compatible with a wide range of git versions.
 
-Lastly, some familiarity with the Terminal application and the bash command line is assumed.
-
-### About Frameworks
+### About Frameworks on iOS
 
 Official support for third-party iOS frameworks was introduced with Xcode 6 and iOS 8. Prior to that, developers had been using frameworks in an unsupported fashion by placing shared libraries and resources inside a filesystem structure that mimicked that of the frameworks published by Apple.
 
 Given that *real* third-party iOS framework support is still in its infancy, it should be no surprise that there are still kinks in the development process when using them:
 
-- The iOS Simulator uses a different processor architecture than real devices. As a result, **frameworks compiled for device won't work in the simulator, and vice-versa**. Sure, you *could* use `lipo` to stitch together a universal binary and use that instead, but...
+- The iOS Simulator uses a different processor architecture than real devices. As a result, **frameworks compiled for device won’t work in the simulator, and vice-versa**. Sure, you *could* use `lipo` to stitch together a universal binary and use that instead, but...
 
-- **Apple will not accept App Store binaries containing iOS Simulator code.** That means if you go the universal binary route, now you need a custom build step to make the universal binary, and you need another step to un-make the universal binary when you're building for submission. Okay, well, why not just build *two* frameworks: one for the iOS Simulator and one for devices?
+- **Apple will not accept App Store binaries containing iOS Simulator code.** That means if you go the universal binary route, now you need a custom build step to make the universal binary, and you need another step to un-make the universal binary when you’re building for submission. Okay, well, why not just build *two* frameworks: one for the iOS Simulator and one for devices?
 
-- **Xcode won't be happy if you import two separate frameworks with the same symbols.** Xcode won't notice that there really is no conflict because the frameworks are compiled for different processor architectures. All Xcode will care about is that you're importing two separate frameworks that both claim to have the same module name.
+- **Xcode won’t be happy if you import two separate frameworks with the same symbols.** Xcode won’t notice that there really is no conflict because the frameworks are compiled for different processor architectures. All Xcode will care about is that you’re importing two separate frameworks that both claim to have the same module name.
 
-For these reasons, we do not release Cleanroom projects as framework binaries. Instead, we provide the source, the Xcode project file, and options for integrating so that you can use it from within your code and submit an app that Apple will accept. (Or, at the very least, if Apple *doesn't* accept your app, we don't want it to be the fault of *this* project!)
+For these reasons, we do not release Cleanroom projects as framework binaries. Instead, we provide the source, the Xcode project file, and options for integrating so that you can use it from within your code and submit an app that Apple will accept. (Or, at the very least, if Apple *doesn’t* accept your app, we don’t want it to be the fault of *this* project!)
 
 ### Options for integration
 
@@ -44,19 +49,19 @@ There are two supported options for integration:
 
 - **[Carthage integration](#carthage-integration)** — [Carthage](https://github.com/Carthage/Carthage) is a dependency package manager designed to build frameworks. Once Carthage is installed, to add CleanroomASL to your project using Carthage, you would put the line `github "emaloney/CleanroomASL"` in your `Cartfile` and then issue the command `carthage update`.
 
-Whether you choose one over the other largely depends on your preferences and—in the case of Carthage—whether you're already using that solution for other dependencies.
+Whether you choose one over the other largely depends on your preferences and—in the case of Carthage—whether you’re already using that solution for other dependencies.
 
 ## Manual Integration
 
 Manual integration involves embedding `CleanroomASL.xcodeproj` directly in your Xcode project.
 
-This will ensure that CleanroomASL is built with the exact same settings you’re using for your app. You won’t have to fiddle with different settings for different architectures — when you're running in the simulator, it will work; when you then switch to building for device, it'll work, too.
+This will ensure that CleanroomASL is built with the exact same settings you’re using for your app. You won’t have to fiddle with different settings for different architectures — when you’re running in the simulator, it will work; when you then switch to building for device, it’ll work, too.
 
 You’ll also be able to step into CleanroomASL code directly in the debugger without worrying about `.dSYM` resolution, which is very helpful.
 
 ### An Overview of the Process
 
-Manual integration is a bit involved; there are five high-level tasks that you'll need to perform:
+Manual integration is a bit involved; there are five high-level tasks that you’ll need to perform:
 
 1. Download the CleanroomASL source into your project structure
 2. Embed `CleanroomASL.xcodeproj` in your Xcode project
@@ -68,9 +73,9 @@ Manual integration is a bit involved; there are five high-level tasks that you'l
 
 Launch Terminal on your Mac, and `cd` to the directory that contains your application.
 
-For our integration examples, we're going to be showing the top-level `CleanroomASL` directory inside a `Libraries` directory at the root level of of your application's source.
+For our integration examples, we’re going to be showing the top-level `CleanroomASL` directory inside a `Libraries` directory at the root level of of your application’s source.
 
-> You do not *need* to use this structure, although we'd recommend it, if only to make the following examples work for you without translation.
+> You do not *need* to use this structure, although we’d recommend it, if only to make the following examples work for you without translation.
 
 If you do not already have a `Libraries` directory, create one:
 
@@ -82,9 +87,9 @@ Next, `cd` into `Libraries` and follow the instructions below.
 
 ### 1. Download the CleanroomASL source
 
-If you're already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will allow you to "lock" your codebase to specific versions of CleanroomASL, making it easier to incorporate new versions on whatever schedule works best for you.
+If you’re already using git for version control, we recommend adding CleanroomASL to your project as a submodule. This will allow you to “lock” your codebase to specific versions of CleanroomASL, making it easier to incorporate new versions on whatever schedule works best for you.
 
-If you're using some other form of version control of if you're not using version control at all—*shame on you!*—then you'll want to *clone* the CleanroomASL repository. We suggest putting the CleanroomASL clone somewhere within your application's directory structure, so that it is included in whatever version control regimen you're using.
+If you’re using some other form of version control of if you’re not using version control at all—*shame on you!*—then you’ll want to *clone* the CleanroomASL repository. We suggest putting the CleanroomASL clone somewhere within your application’s directory structure, so that it is included in whatever version control regimen you’re using.
 
 #### Downloading CleanroomASL as a submodule
 
@@ -97,16 +102,16 @@ git submodule add https://github.com/emaloney/CleanroomASL.git
 git submodule update --init --recursive
 ```
 
-Next, you're ready to [embed the `CleanroomASL.xcodeproj` project file in your Xcode project](#2-embed-cleanroomasl-in-your-project).
+Next, you’re ready to [embed the `CleanroomASL.xcodeproj` project file in your Xcode project](#2-embed-cleanroomasl-in-your-project).
 
 #### Downloading CleanroomASL as a cloned repo
 
-> **Important:** Skip this section if you already performed the tasks outlined in "Downloading CleanroomASL as a submodule" above.
+> **Important:** Skip this section if you already performed the tasks outlined in “Downloading CleanroomASL as a submodule” above.
 
 From within the `Libraries` directory, issue the following command to clone the CleanroomASL repository:
 
 ```bash
-git clone --recursive https://github.com/emaloney/CleanroomASL.git
+git clone https://github.com/emaloney/CleanroomASL.git
 ```
 
 ### 2. Embed CleanroomASL in your project
@@ -119,17 +124,19 @@ Then, open your application in Xcode, and drag `CleanroomASL.xcodeproj` into the
 
 Before we can add `CleanroomASL.framework` to your app, we have to build it, so Xcode has more information about the framework.
 
-**Important:** The next step will only work when the framework is built for a **device-based run destination**. That means that you must either select the generic "iOS Device" run destination before building, or you must select an actual device (an option that's only available when a device is connected).
+**Important:** The next step will only work when the framework is built for a **device-based run destination**. That means that you must either select the “My Mac” or “iOS Device” run destination before building, or you must select an actual external device (an option that’s only available when such a device is connected to your development machine).
 
-Once a device-based run destination has been selected, select the "CleanroomASL" build scheme. Then, select *Build* (⌘B) from the *Product* menu.
+Once a device-based run destination has been selected, select the appropriate build scheme for the target platform: “CleanroomASL iOS” or “CleanroomASL OSX”.
 
-Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the "Products" group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will open the folder containing the framework binary you just built.
+Then, select *Build* (⌘B) from the *Product* menu.
 
-If all went well, you should see several files in this folder; the one we're concerned with is:
+Once the build is complete, open `CleanroomASL.xcodeproj` in the project navigator and find the “Products” group. Open that, and right-click on `CleanroomASL.framework`. Select *Show in Finder*. This will open the folder containing the framework binary you just built.
+
+If all went well, you should see several files in this folder; the one we’re concerned with is:
 
 - `CleanroomASL.framework`
 
-If that file isn't present, something went wrong with the build.
+If that file isn’t present, something went wrong with the build.
 
 ### 4. Add the necessary frameworks to your app target
 
@@ -143,24 +150,24 @@ If successful, you should see `CleanroomASL.framework` listed under both the *Em
 
 Unfortunately, Xcode will reference the frameworks you just added in a way that will eventually cause you pain, particularly if multiple developers are sharing the same project file (in which case the pain will be felt almost immediately).
 
-So, to make things sane again, you'll need to make sure Xcode references `CleanroomASL.framework` using a "Relative to Build Products" location.
+So, to make things sane again, you’ll need to make sure Xcode references `CleanroomASL.framework` using a “Relative to Build Products” location.
 
 To do this:
 
 1. Locate the `CleanroomASL.framework` in the Xcode project browser
 2. Select the framework
-3. Ensure the Xcode project window's *Utilities* pane is open
+3. Ensure the Xcode project window’s *Utilities* pane is open
 4. Show the *File Inspector* in the *Utilities* pane
 5. Under the *Identity and Type* section, find the dropdown for the *Location* setting
-6. If the *Location* dropdown does not show "Relative to Build Products" as the setting, select "Relative to Build Products"
+6. If the *Location* dropdown does not show “Relative to Build Products” as the setting, select “Relative to Build Products”
 
-Once you've done this for each framework, **_you're all done integrating CleanroomASL!_**
+Once you’ve done this for each framework, **_you’re all done integrating CleanroomASL!_**
 
 Skip to the [Adding the Swift import](#adding-the-swift-import) section to see how you can import CleanroomASL for use in your Swift code.
 
 ## Carthage Integration
 
-Carthage is a third-party package dependency manager for iOS and Mac OS X. Carthage works by building frameworks for each of a project's dependencies.
+Carthage is a third-party package dependency manager for iOS and Mac OS X. Carthage works by building frameworks for each of a project’s dependencies.
 
 ### Verifying Carthage availability
 
@@ -182,9 +189,9 @@ If Carthage is not present, you will see an error that looks like:
 
 Installing Carthage is beyond the scope of this document. If you do not have Carthage installed but would like to use it, [you can find installation instructions on the project page](https://github.com/Carthage/Carthage#installing-carthage).
 
-### How Carthage builds work
+### How Carthage builds iOS frameworks
 
-For iOS, Carthage builds *universal binary* frameworks, meaning that they will work in the iOS Simulator as well as on actual devices. However, because Apple will not accept App Store submissions containing universal binary code, Carthage requires the addition of a build step that strips all unused architectures out of the universal binaries. That way, when building for the simulator, device code is removed; conversely, when creating a device build, simulator code is removed. This keeps Apple happy, while also making it easy to switch back and forth between running on the device and in the simulator.
+When building iOS frameworks, Carthage creates *universal binaries*, meaning that they will work in the iOS Simulator as well as on actual devices. However, because Apple will not accept App Store submissions containing universal binary code, Carthage requires the addition of a build step that strips all unused architectures out of the universal binaries. That way, when building for the simulator, device code is removed; conversely, when creating a device build, simulator code is removed. This keeps Apple happy, while also making it easy to switch back and forth between running on the device and in the simulator.
 
 ### An Overview of the Process
 
@@ -197,11 +204,11 @@ Carthage integration is a little simpler than manual integration:
 
 ### Getting Started
 
-We'll start in the Terminal, by `cd`ing into to your project's root directory. The commands you'll need to issue below can all be done from this location.
+We’ll start in the Terminal, by `cd`ing into to your project’s root directory. The commands you’ll need to issue below can all be done from this location.
 
 ### 1. Update the Cartfile
 
-In your project's root directory, edit the file named `Cartfile`—creating it if necessary—to add the following line:
+In your project’s root directory, edit the file named `Cartfile`—creating it if necessary—to add the following line:
 
 ```
 github "emaloney/CleanroomASL"
@@ -217,21 +224,25 @@ carthage update
 
 This will cause Carthage to download and build CleanroomASL.
 
-#### Where Carthage puts its files
+#### Where Carthage stores files
 
-Carthage puts its files within a top-level directory called `Carthage` at the root of your project's directory structure (i.e., the `Carthage` directory is a sibling of the `Cartfile`). Within this directory are two more directories: `Build`, which contains the frameworks built by Carthage; and `Checkouts`, which contains fully populated directory structures for each repository specified in the `Cartfile`.
+Carthage puts its files within a top-level directory called `Carthage` at the root of your project’s directory structure (i.e., the `Carthage` directory is a sibling of the `Cartfile`). Within this directory are two more directories: `Build`, which contains the frameworks built by Carthage; and `Checkouts`, which contains fully populated directory structures for each repository specified in the `Cartfile`.
 
 > We recommend adding `Carthage/` to your `.gitignore` file, since the files in the `Carthage` directory are the equivalent of build artifacts.
 
-Once Carthage is done building CleanroomASL, you can execute the following Terminal command to see the frameworks built by Carthage:
+Once Carthage is done building CleanroomASL, you can use the `open` command to locate `CleanroomASL.framework` in Finder:
 
 ```bash
 open Carthage/Build/iOS
 ```
 
-This will cause the directory containing `CleanroomASL.framework` to open in Finder.
+The command above opens the directory containing the iOS build of the framework; to locate the Mac OS X build, execute:
 
-If that file isn't present, something went wrong with the build.
+```bash
+open Carthage/Build/Mac
+```
+
+If the `CleanroomASL.framework` file isn’t present, something went wrong with the build.
 
 ### 3. Add the necessary frameworks to your app target
 
@@ -243,9 +254,11 @@ If successful, you should see `CleanroomASL.framework` listed under both the *Em
 
 ### 4. Create a build phase to strip the Carthage frameworks
 
+> **Important:** You do *not* need to perform this step when building for Mac OS X. This step is only necessary when building for targets that can be run in a simulator.
+
 In Xcode, select the *Build Phases* tab in the build settings for your application target.
 
-At the top-left corner of the list of build phases, you will see a "`+`" icon. Click that icon and add a "New Run Script Phase".
+At the top-left corner of the list of build phases, you will see a “`+`” icon. Click that icon and add a “New Run Script Phase”.
 
 Then, in the script editor area just below the *Shell* line, add the following text:
 
@@ -253,9 +266,9 @@ Then, in the script editor area just below the *Shell* line, add the following t
 $PROJECT_DIR/Carthage/Checkouts/CleanroomASL/BuildControl/bin/stripCarthageFrameworks.sh
 ```
 
-This script will ensure that the frameworks built by Carthage are stripped of unnecessary processor architectures. Without this step, Apple would reject your app submission because the Carthage frameworks would be included as universal binaries, which [isn't allowed in App Store submissions](http://www.openradar.me/radar?id=6409498411401216).
+This script will ensure that the frameworks built by Carthage are stripped of unnecessary processor architectures. Without this step, Apple would reject your app submission because the Carthage frameworks would be included as universal binaries, which [isn’t allowed in App Store submissions](http://www.openradar.me/radar?id=6409498411401216).
 
-Once you've done this, try building your application. If you don't see any errors, **_you're all done integrating CleanroomASL!_**
+Once you’ve done this, try building your application. If you don’t see any errors, **_you’re all done integrating CleanroomASL!_**
 
 ## Adding the Swift import
 
