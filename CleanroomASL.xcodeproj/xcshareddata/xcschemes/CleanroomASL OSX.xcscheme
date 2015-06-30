@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3B5542181B420D18001D6BE7"
-               BuildableName = "CleanroomASL OSX.framework"
+               BuildableName = "CleanroomASL.framework"
                BlueprintName = "CleanroomASL OSX"
                ReferencedContainer = "container:CleanroomASL.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3B5542181B420D18001D6BE7"
-            BuildableName = "CleanroomASL OSX.framework"
+            BuildableName = "CleanroomASL.framework"
             BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3B5542181B420D18001D6BE7"
-            BuildableName = "CleanroomASL OSX.framework"
+            BuildableName = "CleanroomASL.framework"
             BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3B5542181B420D18001D6BE7"
-            BuildableName = "CleanroomASL OSX.framework"
+            BuildableName = "CleanroomASL.framework"
             BlueprintName = "CleanroomASL OSX"
             ReferencedContainer = "container:CleanroomASL.xcodeproj">
          </BuildableReference>
