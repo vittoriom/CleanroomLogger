@@ -6,7 +6,8 @@ CleanroomASL is an iOS framework providing a Swift-based API for writing to and 
 
 CleanroomASL is designed as a thin wrapper around ASL’s native C API that makes use of Swift concepts where appropriate to make coding easier-to-understand and less error-prone.
 
-CleanroomASL is part of [the Cleanroom Project](http://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com) and is distributed under [the MIT license](https://github.com/emaloney/CleanroomASL/blob/master/LICENSE). CleanroomASL is provided for your use, free-of-charge and on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
+CleanroomASL is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
+
 
 #### Who It’s For
 
@@ -22,13 +23,20 @@ CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API tha
 
 CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.
 
-#### Contributing
 
-CleanroomASL is in active development, and we welcome your contributions.
+### Swift 2.0 compatibility
 
-If you’d like to contribute to this or any other Cleanroom Project repo, please read [the contribution guidelines](https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project).
+The `master` branch of this project is Swift 2.0 compliant and therefore **requires Xcode 7 beta 2 or higher to compile**.
 
-## Adding CleanroomASL to your project
+
+### License
+
+CleanroomASL is distributed under [the MIT license](/blob/master/LICENSE).
+
+CleanroomASL is provided for your use—free-of-charge—on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
+
+
+### Adding CleanroomASL to your project
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
@@ -107,9 +115,12 @@ Using its return value, the callback can control whether subsequent records are 
 
 > Once `nil` is passed to the callback or the callback returns `false`, the callback will not be executed again for the given search operation.
 
-#### Further reading
 
-For further information on using the CleanroomASL framework, [visit the API documentation](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html).
+
+### API documentation
+
+For detailed information on using CleanroomASL, [API documentation](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) is available.
+
 
 ## About the Apple System Log
 
@@ -146,6 +157,22 @@ Apple’s native API for ASL is written in C. The definitive documentation for A
 
 Peter Hosey’s *Idle Time* blog also has [a number of informative posts on ASL](http://boredzo.org/blog/archives/category/programming/apple-system-logger) helpful to anyone who wants to understand how it works.
 
-## Acknowledgements
+
+## About
+
+The Cleanroom Project is an experiment in re-imagining Gilt's iOS codebase in a legacy-free incarnation that embraces the latest Apple technology.
+
+We'll be tracking the most up-to-date releases of Swift, iOS and Xcode, and we'll be [open-sourcing major portions of our code](https://github.com/gilt/Cleanroom#open-source-by-default) as we go.
+
+
+### Contributing
+
+CleanroomASL is in active development, and we welcome your contributions.
+
+If you’d like to contribute to this or any other Cleanroom Project repo, please read [the contribution guidelines](https://github.com/gilt/Cleanroom#contributing-to-the-cleanroom-project).
+
+
+### Acknowledgements
 
 [API documentation for CleanroomASL](https://rawgit.com/emaloney/CleanroomASL/master/Documentation/index.html) is generated using [Realm](http://realm.io)'s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
+
