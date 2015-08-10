@@ -58,11 +58,11 @@ public final class ASLClient
 
     /** The string that will be used by ASL the *sender* of any log messages
     passed to the receiver's `log()` function. */
-    public let sender: String?
+    public let sender: String
 
     /** The string that will be used by ASL the *facility* of any log messages
     passed to the receiver's `log()` function. */
-    public let facility: String?
+    public let facility: String
 
     /** The receiver's filter mask. */
     public let filterMask: Int32
@@ -90,12 +90,12 @@ public final class ASLClient
     Initializes a new `ASLClient` instance.
     
     :param:     sender Will be used as the `ASLAttributeKey` value for the
-                `.Sender` key for all log messages sent to ASL. If `nil`, ASL
-                will use the process name.
+                `.Sender` key for all log messages sent to ASL. If `nil`, the
+                name of the running process is used.
     
     :param:     facility Will be used as the `ASLAttributeKey` value for the
-                `.Facility` key for all log messages sent to ASL. If `nil`, ASL
-                will select a default.
+                `.Facility` key for all log messages sent to ASL. If `nil`, 
+                the string "`com.gilt.cleanroomASL`" is used.
     
     :param:     filterMask Specifies the priority filter that should be applied
                 to messages sent to the log.
@@ -114,8 +114,8 @@ public final class ASLClient
     */
     public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.Debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
     {
-        self.sender = sender
-        self.facility = facility
+        self.sender = sender ?? NSProcessInfo.processInfo().processName
+        self.facility = facility ?? "com.gilt.CleanroomASL"
         self.filterMask = filterMask
         self.useRawStdErr = useRawStdErr
         self.options = options
@@ -126,7 +126,7 @@ public final class ASLClient
             options &= ~Options.StdErr.rawValue
         }
 
-        self.client = asl_open(self.sender ?? nil, self.facility ?? nil, options)
+        self.client = asl_open(self.sender, self.facility, options)
 
         asl_set_filter(self.client, self.filterMask)
 
