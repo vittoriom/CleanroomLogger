@@ -429,17 +429,23 @@ confirmationPrompt "Releasing $REPO_NAME $VERSION (current is $CURRENT_VERSION)"
 if [[ $REPO_IS_DIRTY && $STASH_DIRTY_FILES ]]; then
 	updateStatus "Stashing modified files"
 	executeCommand "git stash"
-    trap cleanupDirtyStash EXIT
+	trap cleanupDirtyStash EXIT
 fi
 
 #
-# make sure it builds
+# make sure each scheme builds
 #
 updateStatus "Verifying that $REPO_NAME builds"
 XCODEBUILD=/usr/bin/xcodebuild
 if [[ ! -x "$XCODEBUILD" ]]; then
 	exitWithErrorSuggestHelp "Expected to find xcodebuild at path $XCODEBUILD"
 fi
+for xcscheme in "${REPO_NAME}.xcodeproj"/xcshareddata/xcschemes/*.xcscheme; do
+	BUILD_SCHEME=$(echo `basename $xcscheme` | sed sq.xcschemeqq)
+	echo "Building ${BUILD_SCHEME}..."
+	executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme ${BUILD_SCHEME} -configuration Release clean build"
+done
+
 executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme ${REPO_NAME} -configuration Release clean build"
 
 updateStatus "Adjusting version numbers"
