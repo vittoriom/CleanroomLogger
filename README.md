@@ -26,7 +26,7 @@ CleanroomLogger is also extensible, allowing you to multiplex log output to mult
 
 ### Swift 2.0 compatibility
 
-The `master` branch of this project is Swift 2.0 compliant and therefore **requires Xcode 7 beta 2 or higher to compile**.
+The `master` branch of this project is Swift 2.0 compliant and therefore **requires Xcode 7 beta 6 or higher to compile**.
 
 
 ### License
