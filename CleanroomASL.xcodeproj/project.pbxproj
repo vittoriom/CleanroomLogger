@@ -20,6 +20,11 @@
 		3B5542431B423156001D6BE7 /* ASLAttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */; };
 		3B5542441B423156001D6BE7 /* ASLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968B1AE191D50049A743 /* ASLObject.swift */; };
 		3B5542451B423156001D6BE7 /* ASLPriorityLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */; };
+		3B6940DA1B54937400DECA01 /* Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B0693241B328D9A0040CDF3 /* Bridging-Header.h */; };
+		3B6940DB1B54938A00DECA01 /* ASLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4596881AE191D50049A743 /* ASLClient.swift */; };
+		3B6940DC1B54938A00DECA01 /* ASLAttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968A1AE191D50049A743 /* ASLAttributeKey.swift */; };
+		3B6940DD1B54938A00DECA01 /* ASLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968B1AE191D50049A743 /* ASLObject.swift */; };
+		3B6940DE1B54938A00DECA01 /* ASLPriorityLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45968C1AE191D50049A743 /* ASLPriorityLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,17 +51,21 @@
 		3B52647F1AE8093500631DC5 /* libsystem_asl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsystem_asl.dylib; path = usr/lib/system/libsystem_asl.dylib; sourceTree = SDKROOT; };
 		3B5264811AE8094B00631DC5 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		3B5542191B420D18001D6BE7 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B5542361B4229EE001D6BE7 /* Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-iOS.xcconfig"; sourceTree = "<group>"; };
-		3B5542371B4229EE001D6BE7 /* Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-OSX.xcconfig"; sourceTree = "<group>"; };
-		3B5542381B4229EE001D6BE7 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		3B5542391B4229EE001D6BE7 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		3B55423A1B4229EE001D6BE7 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
-		3B55423B1B4229EE001D6BE7 /* OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
-		3B55423C1B4229EE001D6BE7 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		3B55423D1B4229EE001D6BE7 /* Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-iOS.xcconfig"; sourceTree = "<group>"; };
-		3B55423E1B4229EE001D6BE7 /* Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-OSX.xcconfig"; sourceTree = "<group>"; };
-		3B55423F1B4229EE001D6BE7 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		3B5542401B4229EE001D6BE7 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		3B6940C41B54923900DECA01 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-iOS.xcconfig"; sourceTree = "<group>"; };
+		3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-TVOS.xcconfig"; sourceTree = "<group>"; };
+		3B6940CF1B54925000DECA01 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3B6940D01B54925000DECA01 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		3B6940D11B54925000DECA01 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		3B6940D21B54925000DECA01 /* OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
+		3B6940D31B54925000DECA01 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-TVOS.xcconfig"; sourceTree = "<group>"; };
+		3B6940D71B54925000DECA01 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3B6940D81B54925000DECA01 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		3B6940D91B54925000DECA01 /* TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TVOS.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +92,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B6940C01B54923900DECA01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -100,17 +116,20 @@
 		3B06931C1B328A380040CDF3 /* config */ = {
 			isa = PBXGroup;
 			children = (
-				3B5542361B4229EE001D6BE7 /* Debug-iOS.xcconfig */,
-				3B5542371B4229EE001D6BE7 /* Debug-OSX.xcconfig */,
-				3B5542381B4229EE001D6BE7 /* Debug.xcconfig */,
-				3B5542391B4229EE001D6BE7 /* Framework.xcconfig */,
-				3B55423A1B4229EE001D6BE7 /* iOS.xcconfig */,
-				3B55423B1B4229EE001D6BE7 /* OSX.xcconfig */,
-				3B55423C1B4229EE001D6BE7 /* Project.xcconfig */,
-				3B55423D1B4229EE001D6BE7 /* Release-iOS.xcconfig */,
-				3B55423E1B4229EE001D6BE7 /* Release-OSX.xcconfig */,
-				3B55423F1B4229EE001D6BE7 /* Release.xcconfig */,
-				3B5542401B4229EE001D6BE7 /* Tests.xcconfig */,
+				3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */,
+				3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */,
+				3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */,
+				3B6940CF1B54925000DECA01 /* Debug.xcconfig */,
+				3B6940D01B54925000DECA01 /* Framework.xcconfig */,
+				3B6940D11B54925000DECA01 /* iOS.xcconfig */,
+				3B6940D21B54925000DECA01 /* OSX.xcconfig */,
+				3B6940D31B54925000DECA01 /* Project.xcconfig */,
+				3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */,
+				3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */,
+				3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */,
+				3B6940D71B54925000DECA01 /* Release.xcconfig */,
+				3B6940D81B54925000DECA01 /* Tests.xcconfig */,
+				3B6940D91B54925000DECA01 /* TVOS.xcconfig */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -131,6 +150,7 @@
 				3B45966B1AE16BE60049A743 /* CleanroomASL.framework */,
 				3B4596761AE16BE60049A743 /* CleanroomASLTests.xctest */,
 				3B5542191B420D18001D6BE7 /* CleanroomASL.framework */,
+				3B6940C41B54923900DECA01 /* CleanroomASL.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,12 +206,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B6940C11B54923900DECA01 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B6940DA1B54937400DECA01 /* Bridging-Header.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3B45966A1AE16BE60049A743 /* CleanroomASL iOS */ = {
+		3B45966A1AE16BE60049A743 /* CleanroomASL-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B4596811AE16BE60049A743 /* Build configuration list for PBXNativeTarget "CleanroomASL iOS" */;
+			buildConfigurationList = 3B4596811AE16BE60049A743 /* Build configuration list for PBXNativeTarget "CleanroomASL-iOS" */;
 			buildPhases = (
 				3B4596661AE16BE60049A743 /* Sources */,
 				3B4596671AE16BE60049A743 /* Frameworks */,
@@ -202,7 +230,7 @@
 			);
 			dependencies = (
 			);
-			name = "CleanroomASL iOS";
+			name = "CleanroomASL-iOS";
 			productName = CleanroomASL;
 			productReference = 3B45966B1AE16BE60049A743 /* CleanroomASL.framework */;
 			productType = "com.apple.product-type.framework";
@@ -225,9 +253,9 @@
 			productReference = 3B4596761AE16BE60049A743 /* CleanroomASLTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3B5542181B420D18001D6BE7 /* CleanroomASL OSX */ = {
+		3B5542181B420D18001D6BE7 /* CleanroomASL-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B55422A1B420D19001D6BE7 /* Build configuration list for PBXNativeTarget "CleanroomASL OSX" */;
+			buildConfigurationList = 3B55422A1B420D19001D6BE7 /* Build configuration list for PBXNativeTarget "CleanroomASL-OSX" */;
 			buildPhases = (
 				3B5542141B420D18001D6BE7 /* Sources */,
 				3B5542151B420D18001D6BE7 /* Frameworks */,
@@ -238,9 +266,27 @@
 			);
 			dependencies = (
 			);
-			name = "CleanroomASL OSX";
+			name = "CleanroomASL-OSX";
 			productName = CleanroomASL;
 			productReference = 3B5542191B420D18001D6BE7 /* CleanroomASL.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3B6940C31B54923900DECA01 /* CleanroomASL-TVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-TVOS" */;
+			buildPhases = (
+				3B6940BF1B54923900DECA01 /* Sources */,
+				3B6940C01B54923900DECA01 /* Frameworks */,
+				3B6940C11B54923900DECA01 /* Headers */,
+				3B6940C21B54923900DECA01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CleanroomASL-TVOS";
+			productName = "CleanroomASL-TVOS";
+			productReference = 3B6940C41B54923900DECA01 /* CleanroomASL.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -262,6 +308,9 @@
 					3B5542181B420D18001D6BE7 = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					3B6940C31B54923900DECA01 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = 3B4596651AE16BE60049A743 /* Build configuration list for PBXProject "CleanroomASL" */;
@@ -276,8 +325,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3B45966A1AE16BE60049A743 /* CleanroomASL iOS */,
-				3B5542181B420D18001D6BE7 /* CleanroomASL OSX */,
+				3B45966A1AE16BE60049A743 /* CleanroomASL-iOS */,
+				3B5542181B420D18001D6BE7 /* CleanroomASL-OSX */,
+				3B6940C31B54923900DECA01 /* CleanroomASL-TVOS */,
 				3B4596751AE16BE60049A743 /* CleanroomASLTests */,
 			);
 		};
@@ -299,6 +349,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3B5542171B420D18001D6BE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6940C21B54923900DECA01 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,12 +395,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B6940BF1B54923900DECA01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B6940DB1B54938A00DECA01 /* ASLClient.swift in Sources */,
+				3B6940DC1B54938A00DECA01 /* ASLAttributeKey.swift in Sources */,
+				3B6940DD1B54938A00DECA01 /* ASLObject.swift in Sources */,
+				3B6940DE1B54938A00DECA01 /* ASLPriorityLevel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		3B4596791AE16BE60049A743 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3B45966A1AE16BE60049A743 /* CleanroomASL iOS */;
+			target = 3B45966A1AE16BE60049A743 /* CleanroomASL-iOS */;
 			targetProxy = 3B4596781AE16BE60049A743 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -351,7 +419,7 @@
 /* Begin XCBuildConfiguration section */
 		3B45967F1AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B55423C1B4229EE001D6BE7 /* Project.xcconfig */;
+			baseConfigurationReference = 3B6940D31B54925000DECA01 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -369,8 +437,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -400,7 +470,7 @@
 		};
 		3B4596801AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B55423C1B4229EE001D6BE7 /* Project.xcconfig */;
+			baseConfigurationReference = 3B6940D31B54925000DECA01 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -418,8 +488,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -441,41 +513,33 @@
 		};
 		3B4596821AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B5542361B4229EE001D6BE7 /* Debug-iOS.xcconfig */;
+			baseConfigurationReference = 3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gilt.cleanroom.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = CleanroomASL;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		3B4596831AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B55423D1B4229EE001D6BE7 /* Release-iOS.xcconfig */;
+			baseConfigurationReference = 3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gilt.cleanroom.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = CleanroomASL;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 		3B4596851AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B5542401B4229EE001D6BE7 /* Tests.xcconfig */;
+			baseConfigurationReference = 3B6940D81B54925000DECA01 /* Tests.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -493,7 +557,7 @@
 		};
 		3B4596861AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B5542401B4229EE001D6BE7 /* Tests.xcconfig */;
+			baseConfigurationReference = 3B6940D81B54925000DECA01 /* Tests.xcconfig */;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -507,18 +571,14 @@
 		};
 		3B55422B1B420D19001D6BE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B5542371B4229EE001D6BE7 /* Debug-OSX.xcconfig */;
+			baseConfigurationReference = 3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gilt.cleanroom.CleanroomASL;
-				PRODUCT_NAME = CleanroomASL;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -526,19 +586,44 @@
 		};
 		3B55422C1B420D19001D6BE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B55423E1B4229EE001D6BE7 /* Release-OSX.xcconfig */;
+			baseConfigurationReference = 3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gilt.cleanroom.CleanroomASL;
-				PRODUCT_NAME = CleanroomASL;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3B6940CA1B54923900DECA01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		3B6940CB1B54923900DECA01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
 		};
@@ -554,7 +639,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B4596811AE16BE60049A743 /* Build configuration list for PBXNativeTarget "CleanroomASL iOS" */ = {
+		3B4596811AE16BE60049A743 /* Build configuration list for PBXNativeTarget "CleanroomASL-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B4596821AE16BE60049A743 /* Debug */,
@@ -572,11 +657,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B55422A1B420D19001D6BE7 /* Build configuration list for PBXNativeTarget "CleanroomASL OSX" */ = {
+		3B55422A1B420D19001D6BE7 /* Build configuration list for PBXNativeTarget "CleanroomASL-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B55422B1B420D19001D6BE7 /* Debug */,
 				3B55422C1B420D19001D6BE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-TVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B6940CA1B54923900DECA01 /* Debug */,
+				3B6940CB1B54923900DECA01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

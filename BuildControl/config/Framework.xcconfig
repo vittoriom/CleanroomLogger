@@ -1,4 +1,6 @@
+PRODUCT_NAME = CleanroomASL
+PRODUCT_BUNDLE_IDENTIFIER = com.gilt.cleanroom.$(PRODUCT_NAME:rfc1034identifier)
 INFOPLIST_FILE = BuildControl/Info-Framework.plist
-SWIFT_OBJC_BRIDGING_HEADER = BuildControl/Bridging-Header.h
 ONLY_ACTIVE_ARCH = NO
 APPLICATION_EXTENSION_API_ONLY = YES
+SWIFT_OBJC_BRIDGING_HEADER = BuildControl/Bridging-Header.h

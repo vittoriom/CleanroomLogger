@@ -12,14 +12,17 @@ fi
 
 pushd "`dirname $0`/../.." > /dev/null
 
+MODULE_NAME=`basename $PWD`
+CURRENT_YEAR=`date +"%Y"`
+
 "$JAZZY_EXECUTABLE" -o Documentation \
-	-m "CleanroomASL" \
+	-m "$MODULE_NAME" \
 	--readme Code/README.md \
-	--github_url "https://github.com/emaloney/CleanroomASL.git" \
+	--github_url "https://github.com/emaloney/$MODULE_NAME" \
 	--author "Evan Maloney, Gilt Groupe" \
 	--author_url "http://github.com/emaloney" \
 	--copyright_holder "Gilt Groupe" \
-	--copyright_year "2014-2015" \
+	--copyright_year "2014-$CURRENT_YEAR" \
 	--copyright_url "http://tech.gilt.com/"
 JAZZY_EXIT_CODE=$?
 if [[ $JAZZY_EXIT_CODE != 0 ]]; then
