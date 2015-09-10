@@ -41,6 +41,20 @@
 		3B0693221B328A380040CDF3 /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		3B0693231B328A380040CDF3 /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
 		3B0693241B328D9A0040CDF3 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "BuildControl/Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		3B3E5EC11BA135C400503925 /* Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-iOS.xcconfig"; sourceTree = "<group>"; };
+		3B3E5EC21BA135C400503925 /* Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B3E5EC31BA135C400503925 /* Debug-tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-tvOS.xcconfig"; sourceTree = "<group>"; };
+		3B3E5EC41BA135C400503925 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3B3E5EC51BA135C400503925 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		3B3E5EC61BA135C400503925 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		3B3E5EC71BA135C400503925 /* OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
+		3B3E5EC81BA135C400503925 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		3B3E5EC91BA135C400503925 /* Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		3B3E5ECA1BA135C400503925 /* Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B3E5ECB1BA135C400503925 /* Release-tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-tvOS.xcconfig"; sourceTree = "<group>"; };
+		3B3E5ECC1BA135C400503925 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3B3E5ECD1BA135C400503925 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		3B3E5ECE1BA135C400503925 /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
 		3B45966B1AE16BE60049A743 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596761AE16BE60049A743 /* CleanroomASLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanroomASLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4596881AE191D50049A743 /* ASLClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASLClient.swift; path = Code/ASLClient.swift; sourceTree = SOURCE_ROOT; };
@@ -52,20 +66,6 @@
 		3B5264811AE8094B00631DC5 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		3B5542191B420D18001D6BE7 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6940C41B54923900DECA01 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleanroomASL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-iOS.xcconfig"; sourceTree = "<group>"; };
-		3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-OSX.xcconfig"; sourceTree = "<group>"; };
-		3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-TVOS.xcconfig"; sourceTree = "<group>"; };
-		3B6940CF1B54925000DECA01 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		3B6940D01B54925000DECA01 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		3B6940D11B54925000DECA01 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
-		3B6940D21B54925000DECA01 /* OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
-		3B6940D31B54925000DECA01 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-iOS.xcconfig"; sourceTree = "<group>"; };
-		3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-OSX.xcconfig"; sourceTree = "<group>"; };
-		3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-TVOS.xcconfig"; sourceTree = "<group>"; };
-		3B6940D71B54925000DECA01 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		3B6940D81B54925000DECA01 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
-		3B6940D91B54925000DECA01 /* TVOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TVOS.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,20 +116,20 @@
 		3B06931C1B328A380040CDF3 /* config */ = {
 			isa = PBXGroup;
 			children = (
-				3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */,
-				3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */,
-				3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */,
-				3B6940CF1B54925000DECA01 /* Debug.xcconfig */,
-				3B6940D01B54925000DECA01 /* Framework.xcconfig */,
-				3B6940D11B54925000DECA01 /* iOS.xcconfig */,
-				3B6940D21B54925000DECA01 /* OSX.xcconfig */,
-				3B6940D31B54925000DECA01 /* Project.xcconfig */,
-				3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */,
-				3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */,
-				3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */,
-				3B6940D71B54925000DECA01 /* Release.xcconfig */,
-				3B6940D81B54925000DECA01 /* Tests.xcconfig */,
-				3B6940D91B54925000DECA01 /* TVOS.xcconfig */,
+				3B3E5EC11BA135C400503925 /* Debug-iOS.xcconfig */,
+				3B3E5EC21BA135C400503925 /* Debug-OSX.xcconfig */,
+				3B3E5EC31BA135C400503925 /* Debug-tvOS.xcconfig */,
+				3B3E5EC41BA135C400503925 /* Debug.xcconfig */,
+				3B3E5EC51BA135C400503925 /* Framework.xcconfig */,
+				3B3E5EC61BA135C400503925 /* iOS.xcconfig */,
+				3B3E5EC71BA135C400503925 /* OSX.xcconfig */,
+				3B3E5EC81BA135C400503925 /* Project.xcconfig */,
+				3B3E5EC91BA135C400503925 /* Release-iOS.xcconfig */,
+				3B3E5ECA1BA135C400503925 /* Release-OSX.xcconfig */,
+				3B3E5ECB1BA135C400503925 /* Release-tvOS.xcconfig */,
+				3B3E5ECC1BA135C400503925 /* Release.xcconfig */,
+				3B3E5ECD1BA135C400503925 /* Tests.xcconfig */,
+				3B3E5ECE1BA135C400503925 /* tvOS.xcconfig */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -271,9 +271,9 @@
 			productReference = 3B5542191B420D18001D6BE7 /* CleanroomASL.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3B6940C31B54923900DECA01 /* CleanroomASL-TVOS */ = {
+		3B6940C31B54923900DECA01 /* CleanroomASL-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-TVOS" */;
+			buildConfigurationList = 3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-tvOS" */;
 			buildPhases = (
 				3B6940BF1B54923900DECA01 /* Sources */,
 				3B6940C01B54923900DECA01 /* Frameworks */,
@@ -284,7 +284,7 @@
 			);
 			dependencies = (
 			);
-			name = "CleanroomASL-TVOS";
+			name = "CleanroomASL-tvOS";
 			productName = "CleanroomASL-TVOS";
 			productReference = 3B6940C41B54923900DECA01 /* CleanroomASL.framework */;
 			productType = "com.apple.product-type.framework";
@@ -327,7 +327,7 @@
 			targets = (
 				3B45966A1AE16BE60049A743 /* CleanroomASL-iOS */,
 				3B5542181B420D18001D6BE7 /* CleanroomASL-OSX */,
-				3B6940C31B54923900DECA01 /* CleanroomASL-TVOS */,
+				3B6940C31B54923900DECA01 /* CleanroomASL-tvOS */,
 				3B4596751AE16BE60049A743 /* CleanroomASLTests */,
 			);
 		};
@@ -419,7 +419,7 @@
 /* Begin XCBuildConfiguration section */
 		3B45967F1AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D31B54925000DECA01 /* Project.xcconfig */;
+			baseConfigurationReference = 3B3E5EC81BA135C400503925 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -470,7 +470,7 @@
 		};
 		3B4596801AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D31B54925000DECA01 /* Project.xcconfig */;
+			baseConfigurationReference = 3B3E5ECC1BA135C400503925 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -513,7 +513,7 @@
 		};
 		3B4596821AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940CC1B54925000DECA01 /* Debug-iOS.xcconfig */;
+			baseConfigurationReference = 3B3E5EC11BA135C400503925 /* Debug-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -526,7 +526,7 @@
 		};
 		3B4596831AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D41B54925000DECA01 /* Release-iOS.xcconfig */;
+			baseConfigurationReference = 3B3E5EC91BA135C400503925 /* Release-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -539,7 +539,7 @@
 		};
 		3B4596851AE16BE60049A743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D81B54925000DECA01 /* Tests.xcconfig */;
+			baseConfigurationReference = 3B3E5ECD1BA135C400503925 /* Tests.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -557,7 +557,7 @@
 		};
 		3B4596861AE16BE60049A743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D81B54925000DECA01 /* Tests.xcconfig */;
+			baseConfigurationReference = 3B3E5ECD1BA135C400503925 /* Tests.xcconfig */;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -571,7 +571,7 @@
 		};
 		3B55422B1B420D19001D6BE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940CD1B54925000DECA01 /* Debug-OSX.xcconfig */;
+			baseConfigurationReference = 3B3E5EC21BA135C400503925 /* Debug-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -586,7 +586,7 @@
 		};
 		3B55422C1B420D19001D6BE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D51B54925000DECA01 /* Release-OSX.xcconfig */;
+			baseConfigurationReference = 3B3E5ECA1BA135C400503925 /* Release-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -600,7 +600,7 @@
 		};
 		3B6940CA1B54923900DECA01 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940CE1B54925000DECA01 /* Debug-TVOS.xcconfig */;
+			baseConfigurationReference = 3B3E5EC31BA135C400503925 /* Debug-tvOS.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -615,7 +615,7 @@
 		};
 		3B6940CB1B54923900DECA01 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6940D61B54925000DECA01 /* Release-TVOS.xcconfig */;
+			baseConfigurationReference = 3B3E5ECB1BA135C400503925 /* Release-tvOS.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -666,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-TVOS" */ = {
+		3B6940C91B54923900DECA01 /* Build configuration list for PBXNativeTarget "CleanroomASL-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B6940CA1B54923900DECA01 /* Debug */,
