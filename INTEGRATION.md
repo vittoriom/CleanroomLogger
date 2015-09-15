@@ -10,10 +10,12 @@ CleanroomASL is built as a *Swift framework*, and as such, it has the following 
 
 Platform|Minimum version
 --------|------------------------
+Apple TV|tvOS 9.0
+Apple Watch|watchOS 2.0
 iOS|iOS 8.0
 Mac|OS X 10.10
 
-CleanroomASL is **Swift 2.0**-compliant and requires **Xcode 7 beta 6 or higher** to be built.
+CleanroomASL is **Swift 2.0**-compliant and requires **Xcode 7.0 or higher** to be built.
 
 ### Contents
 
@@ -25,7 +27,7 @@ CleanroomASL is **Swift 2.0**-compliant and requires **Xcode 7 beta 6 or higher*
 
 Some familiarity with the Terminal application, the bash command line, and the `git` command is assumed.
 
-The steps below have been tested with **git 2.3.7 (Apple Git-57)**, although they should be compatible with a wide range of git versions.
+The steps below have been tested with **git 2.3.8 (Apple Git-58)**, although they should be compatible with a wide range of git versions.
 
 ### About Frameworks on iOS
 
@@ -126,7 +128,7 @@ Before we can add `CleanroomASL.framework` to your app, we have to build it, so 
 
 **Important:** The next step will only work when the framework is built for a **device-based run destination**. That means that you must either select the “My Mac” or “iOS Device” run destination before building, or you must select an actual external device (an option that’s only available when such a device is connected to your development machine).
 
-Once a device-based run destination has been selected, select the appropriate build scheme for the target platform: “CleanroomASL iOS” or “CleanroomASL OSX”.
+Once a device-based run destination has been selected, select the appropriate build scheme for the target platform: “CleanroomASL-iOS”, “CleanroomASL-OSX”, “CleanroomASL-tvOS” or “CleanroomASL-watchOS”.
 
 Then, select *Build* (⌘B) from the *Product* menu.
 
