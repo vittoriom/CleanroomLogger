@@ -1,3 +1,5 @@
+## Using CleanroomASL
+
 The CleanroomASL framework provides a simple mechanism for writing to the Apple System Log, and it can also be used to query the contents of the Apple System Log in order to find messages matching specific criteria.
 
 #### The ASLClient class
