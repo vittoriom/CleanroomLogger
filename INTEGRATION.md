@@ -8,11 +8,11 @@ This document describes how to integrate CleanroomASL into your application.
 
 CleanroomASL is built as a *Swift framework*, and as such, it has the following base platform requirements:
 
-Platform|Minimum version
+Platform|Minimum OS version
 --------|------------------------
 Apple TV|tvOS 9.0
 Apple Watch|watchOS 2.0
-iOS|iOS 8.0
+iPhone/iPad|iOS 8.0
 Mac|OS X 10.10
 
 CleanroomASL is **Swift 2.0**-compliant and requires **Xcode 7.0 or higher** to be built.
