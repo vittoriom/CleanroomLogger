@@ -6,8 +6,8 @@
 # by emaloney, 7 June 2015
 #
 
-SCRIPT_NAME=`basename $0`
-SCRIPT_DIR=`dirname "$PWD/$0"`
+SCRIPT_NAME=$(basename "$0")
+SCRIPT_DIR=$(cd $PWD ; cd `dirname "$0"` ; echo $PWD)
 
 showHelp()
 {
@@ -429,24 +429,33 @@ confirmationPrompt "Releasing $REPO_NAME $VERSION (current is $CURRENT_VERSION)"
 if [[ $REPO_IS_DIRTY && $STASH_DIRTY_FILES ]]; then
 	updateStatus "Stashing modified files"
 	executeCommand "git stash"
-	trap cleanupDirtyStash EXIT
+    trap cleanupDirtyStash EXIT
 fi
 
 #
-# make sure each scheme builds
+# make sure it builds
 #
 updateStatus "Verifying that $REPO_NAME builds"
 XCODEBUILD=/usr/bin/xcodebuild
 if [[ ! -x "$XCODEBUILD" ]]; then
 	exitWithErrorSuggestHelp "Expected to find xcodebuild at path $XCODEBUILD"
 fi
-for xcscheme in "${REPO_NAME}.xcodeproj"/xcshareddata/xcschemes/*.xcscheme; do
-	BUILD_SCHEME=$(echo `basename $xcscheme` | sed sq.xcschemeqq)
-	echo "Building ${BUILD_SCHEME}..."
-	executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme ${BUILD_SCHEME} -configuration Release clean build"
+
+#
+# build each scheme we can find
+#
+xcodebuild -list | grep "\s${REPO_NAME}" | grep -v Tests | sort | uniq | sed "s/^[ \t]*//" | while read SCHEME
+do
+	updateStatus "Building: $SCHEME..."
+	executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme \"$SCHEME\" -configuration Release clean build"
 done
 
-executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme ${REPO_NAME} -configuration Release clean build"
+xcodebuild -list | grep "\s${REPO_NAME}" | grep UnitTests | sort | uniq | sed "s/^[ \t]*//" | while read TARGET
+do
+	SCHEME=$(echo "$TARGET" | sed sqUnitTestsqq)
+	updateStatus "Executing unit tests: $TARGET for $SCHEME..."
+	executeCommand "$XCODEBUILD -project ${REPO_NAME}.xcodeproj -scheme \"$SCHEME\" -configuration Release clean test"
+done
 
 updateStatus "Adjusting version numbers"
 executeCommand "$PLIST_BUDDY \"$FRAMEWORK_PLIST_PATH\" -c \"Set :CFBundleShortVersionString $VERSION\""
@@ -474,4 +483,3 @@ if [[ $PUSH_WHEN_DONE ]]; then
 	executeCommand "git push"
 	executeCommand "git push --tags"
 fi
-
