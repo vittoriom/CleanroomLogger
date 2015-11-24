@@ -213,7 +213,7 @@ If you’re using some other form of version control of if you’re not using ve
 From within the `Libraries` directory, issue the following commands to download CleanroomASL:
 
 ```bash
-git submodule add https://github.com/emaloney/CleanroomASL.git
+git submodule add https://github.com/emaloney/CleanroomASL
 git submodule update --init --recursive
 ```
 
@@ -226,7 +226,7 @@ Next, you’re ready to [embed the `CleanroomASL.xcodeproj` project file in your
 From within the `Libraries` directory, issue the following command to clone the CleanroomASL repository:
 
 ```bash
-git clone https://github.com/emaloney/CleanroomASL.git
+git clone https://github.com/emaloney/CleanroomASL
 ```
 
 ### 2. Embed CleanroomASL in your project
