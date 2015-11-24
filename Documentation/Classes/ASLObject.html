@@ -28,7 +28,7 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ASLClient.html">ASLClient</a>
@@ -45,7 +45,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a>
@@ -56,7 +56,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Extensions/asl_object_t.html">asl_object_t</a>
@@ -64,13 +64,13 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Subscripts.html">Subscripts</a>
+            <a href="../Subscripts.html">Subscripts</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -81,22 +81,22 @@
           <section class="section">
             <h1>ASLObject</h1>
               <div class="declaration">
-                <div class="Swift">
+                <div class="language">
                   <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ASLObject</span></code></pre>
 
                 </div>
               </div>
             <p>Instances of the <code>ASLObject</code> class provide type-safe to an underlying
-<code>asl_object_t</code> of a given <code>ASL_TYPE</code>.</p>
+<code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> of a given <code>ASL_TYPE</code>.</p>
 
 <p>Typically, you would interact one of the <code>ASLObject</code> subclasses: 
-<code>ASLMessageObject</code> or <code>ASLQueryObject</code>. However, you can also use low-level
-ASL functionality using the <code>asl_object_t</code> exposed by the <code>aslObject</code>
+<code><a href="../Classes/ASLMessageObject.html">ASLMessageObject</a></code> or <code><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></code>. However, you can also use low-level
+ASL functionality using the <code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> exposed by the <code>aslObject</code>
 property.</p>
 
 <p><strong>Note:</strong> <code>ASLObject</code> subclass implementations are only provided for
-<code>ASL_TYPE_MSG</code> (the <code>ASLMessageObject</code> class) and <code>ASL_TYPE_QUERY</code> 
-(the <code>ASLQueryObject</code> class).</p>
+<code>ASL_TYPE_MSG</code> (the <code><a href="../Classes/ASLMessageObject.html">ASLMessageObject</a></code> class) and <code>ASL_TYPE_QUERY</code> 
+(the <code><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></code> class).</p>
 
           </section>
           <section class="section task-group-section">
@@ -121,9 +121,41 @@ property.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ASLType</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows ASL object attributes to be retrieved and set via the subscripting
+notation.</p>
+
+<p>:param:     key The attribute key.</p>
+
+<p>:returns:   The value associated with <code>key</code>, or <code>nil</code> if there isn&rsquo;t one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -154,41 +186,9 @@ index.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:sC12CleanroomASL9ASLObject9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Allows ASL object attributes to be retrieved and set via the subscripting
-notation.</p>
-
-<p>:param:     key The attribute key.</p>
-
-<p>:returns:   The value associated with <code>key</code>, or <code>nil</code> if there isn&rsquo;t one.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -208,12 +208,12 @@ notation.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Indicates the <code>ASLType</code> represented by the receiver.</p>
+                        <p>Indicates the <code><a href="../Classes/ASLObject/ASLType.html">ASLType</a></code> represented by the receiver.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">ASLType</span></code></pre>
 
@@ -235,14 +235,14 @@ notation.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the underlying <code>asl_object_t</code> represented by the receiver. 
+                        <p>Returns the underlying <code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> represented by the receiver. 
 You can use this for direct, low-level access to the Apple System Log
 API.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">aslObject</span><span class="p">:</span> <span class="k">as</span><span class="n">l_object_t</span></code></pre>
 
@@ -271,7 +271,7 @@ API.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">countAttributes</span><span class="p">()</span>
         <span class="o">-&gt;</span> <span class="kt">UInt32</span></code></pre>
@@ -287,7 +287,7 @@ API.</p>
         </section>
         <section id="footer">
           <p>© 2015 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

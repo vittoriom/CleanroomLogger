@@ -28,7 +28,7 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ASLClient.html">ASLClient</a>
@@ -45,7 +45,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a>
@@ -56,7 +56,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Extensions/asl_object_t.html">asl_object_t</a>
@@ -64,13 +64,13 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Subscripts.html">Subscripts</a>
+            <a href="../Subscripts.html">Subscripts</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:sE12CleanroomASLVSs14COpaquePointer9subscriptFVSs6UInt32GSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -81,14 +81,14 @@
           <section class="section">
             <h1>ASLQueryObject</h1>
               <div class="declaration">
-                <div class="Swift">
+                <div class="language">
                   <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ASLQueryObject</span><span class="p">:</span> <span class="kt">ASLObject</span></code></pre>
 
                 </div>
               </div>
             <p>Represents an ASL query object.</p>
 
-<p>Message objects represent an <code>asl_object_t</code> having a type of <code>ASL_TYPE_QUERY</code>.</p>
+<p>Message objects represent an <code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> having a type of <code>ASL_TYPE_QUERY</code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -114,7 +114,7 @@ values when searches are being performed.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Operation</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
@@ -138,16 +138,16 @@ values when searches are being performed.</p>
                       <div class="abstract">
                         <p>The function signature implemented by ASL search query result handlers.</p>
 
-<p>When an <code>ASLClient</code>&rsquo;s <code>search()</code> function is called, this callback is
+<p>When an <code><a href="../Classes/ASLClient.html">ASLClient</a></code>&rsquo;s <code>search()</code> function is called, this callback is
 provided as a parameter.</p>
 
 <p>For each record in the query&rsquo;s result set, the callback function is
-executed once and passed a <code>ResultRecord</code> value. After all results
+executed once and passed a <code><a href="../Classes/ASLQueryObject/ResultRecord.html">ResultRecord</a></code> value. After all results
 have been reported, the callback is executed one final time, with <code>nil</code>
 passed instead of an actual record.</p>
 
 <p>The callback implementation should return <code>true</code> as long as additional
-<code>ResultRecord</code>s are desired.</p>
+<code><a href="../Classes/ASLQueryObject/ResultRecord.html">ResultRecord</a></code>s are desired.</p>
 
 <p>The callback can short-circuit delivery of additional results by returning
 <code>false</code> at any time. Once the callback returns <code>false</code>, it will not be 
@@ -156,7 +156,7 @@ called again for the givens query.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ResultCallback</span> <span class="o">=</span> <span class="p">(</span><span class="kt">ResultRecord</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
@@ -186,7 +186,7 @@ with bitwise operators.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OperationModifiers</span><span class="p">:</span> <span class="kt">OptionSetType</span></code></pre>
 
@@ -210,13 +210,13 @@ with bitwise operators.</p>
                       <div class="abstract">
                         <p>A query result record. For each log message matched by an ASL search
 query, a <code>ResultRecord</code> representing that message is passed to the
-<code>ResultCallback</code> responsible for handling the query results.</p>
+<code><a href="../Classes/ASLQueryObject.html#/s:C12CleanroomASL14ASLQueryObject14ResultCallback">ResultCallback</a></code> responsible for handling the query results.</p>
 
                         <a href="../Classes/ASLQueryObject/ResultRecord.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ResultRecord</span></code></pre>
 
@@ -238,12 +238,12 @@ query, a <code>ResultRecord</code> representing that message is passed to the
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes an empty <code>ASLQueryObject</code>.</p>
+                        <p>Initializes an empty <code><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
 
@@ -270,21 +270,21 @@ query, a <code>ResultRecord</code> representing that message is passed to the
 <p>When a search query is executed, the result set will be constrained
 according to the query key(s) that have been set on the receiver.</p>
 
-<p>:param:     key An <code>ASLAttributeKey</code> specifying the key whose value will
+<p>:param:     key An <code><a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a></code> specifying the key whose value will
             be queried.</p>
 
 <p>:param:     value The string value to find.</p>
 
-<p>:param:     operation Specifies the query <code>Operation</code> to be performed. This
+<p>:param:     operation Specifies the query <code><a href="../Classes/ASLQueryObject/Operation.html">Operation</a></code> to be performed. This
             governs how values will be matched by the search.</p>
 
-<p>:param:     modifiers The <code>OperationModifiers</code> bit flags that modify the
+<p>:param:     modifiers The <code><a href="../Classes/ASLQueryObject/OperationModifiers.html">OperationModifiers</a></code> bit flags that modify the
             behavior of the search operation.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setQueryKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="kt">OperationModifiers</span><span class="p">)</span></code></pre>
 
@@ -311,15 +311,15 @@ according to the query key(s) that have been set on the receiver.</p>
 <p>When a search query is executed, the result set will be constrained
 according to the query key(s) that have been set on the receiver.</p>
 
-<p>:param:     key An <code>ASLAttributeKey</code> specifying the key whose value will
+<p>:param:     key An <code><a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a></code> specifying the key whose value will
             be queried.</p>
 
 <p>:param:     value The integer value to find.</p>
 
-<p>:param:     operation Specifies the query <code>Operation</code> to be performed. This
+<p>:param:     operation Specifies the query <code><a href="../Classes/ASLQueryObject/Operation.html">Operation</a></code> to be performed. This
             governs how values will be matched by the search.</p>
 
-<p>:param:     modifiers The <code>OperationModifiers</code> bit flags that modify the
+<p>:param:     modifiers The <code><a href="../Classes/ASLQueryObject/OperationModifiers.html">OperationModifiers</a></code> bit flags that modify the
             behavior of the search operation. Note that using this method
             variant automatically causes the <code>.MatchNumeric</code> bit flag to
             be set.</p>
@@ -327,7 +327,7 @@ according to the query key(s) that have been set on the receiver.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setQueryKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="kt">OperationModifiers</span><span class="p">)</span></code></pre>
 
@@ -342,7 +342,7 @@ according to the query key(s) that have been set on the receiver.</p>
         </section>
         <section id="footer">
           <p>© 2015 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
