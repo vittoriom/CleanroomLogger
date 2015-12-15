@@ -1203,6 +1203,7 @@
 			baseConfigurationReference = 3B38DBD81BA76428000986DF /* Project.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 19;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXCODE_BUILD";
 			};
 			name = Debug;
 		};
@@ -1211,6 +1212,7 @@
 			baseConfigurationReference = 3B38DBD81BA76428000986DF /* Project.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 19;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXCODE_BUILD";
 			};
 			name = Release;
 		};
