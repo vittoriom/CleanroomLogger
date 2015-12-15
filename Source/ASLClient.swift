@@ -8,6 +8,10 @@
 
 import Foundation
 
+#if !XCODE_BUILD    // we import ASL as a module only when building with the
+import ASL          // Swift Package Manager (SPM); in Xcode, the use the
+#endif              // bridging header to import the ASL API
+
 /**
 `ASLClient` instances maintain a client connection to the ASL daemon, and can
 used to perform logging and to execute log search queries.
