@@ -143,19 +143,22 @@ public final class ASLClient
         asl_close(client)
     }
 
-    private func dispatcher(currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false)(block: dispatch_block_t)
+    private func dispatcher(currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false) -> (dispatch_block_t) -> Void
     {
-        let shouldDispatch = currentQueue == nil || !self.queue.isEqual(currentQueue!)
-        if shouldDispatch {
-            if synchronously {
-                return dispatch_sync(queue, block)
-            } else {
-                return dispatch_async(queue, block)
+        let dispatcher: (dispatch_block_t) -> Void = { [queue] block in
+            let shouldDispatch = currentQueue == nil || !self.queue.isEqual(currentQueue!)
+            if shouldDispatch {
+                if synchronously {
+                    return dispatch_sync(queue, block)
+                } else {
+                    return dispatch_async(queue, block)
+                }
+            }
+            else {
+                block()
             }
         }
-        else {
-            block()
-        }
+        return dispatcher
     }
 
     /**
